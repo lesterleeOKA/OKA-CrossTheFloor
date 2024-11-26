@@ -194,8 +194,6 @@ public class GameSetup : LoadImage
     public float gameTime;
     public bool showFPS = false;
     public int playerNumber = 1;
-    public Color32 gridNormalColor = default;
-    public Color32 gridPressedColor = default;
 
     public void setBackground()
     {

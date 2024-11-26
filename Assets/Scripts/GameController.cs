@@ -6,11 +6,11 @@ public class GameController : GameBaseController
     public static GameController Instance = null;
     public GridManager gridManager;
     public Cell[,] grid;
-    public GameObject playerPanelPrefab;
+    public GameObject playerPrefab;
     public Transform parent;
     public Color[] playersColor;
-    public Sprite[] defaultAnswerBox, defaultFrames;
-   // public List<PlayerController> playerControllers = new List<PlayerController>();
+    public Sprite[] defaultAnswerBox;
+    public List<PlayerController> playerControllers = new List<PlayerController>();
     private bool showWordHints = false;
 
     protected override void Awake()
@@ -37,13 +37,13 @@ public class GameController : GameBaseController
         this.grid = gridManager.CreateGrid(word, gridTexture);
 
 
-        /* for (int i = 0; i < this.playerNumber; i++)
+         for (int i = 0; i < this.playerNumber; i++)
          {
-             var playerController = GameObject.Instantiate(this.playerPanelPrefab, this.parent).GetComponent<PlayerController>();
-             playerController.gameObject.name = "Player" + i + "_Panel";
+             var playerController = GameObject.Instantiate(this.playerPrefab, this.parent).GetComponent<PlayerController>();
+             playerController.gameObject.name = "Player_" + i;
              playerController.UserId = i;
              this.playerControllers.Add(playerController);
-             this.playerControllers[i].Init(word, this.defaultAnswerBox, this.defaultFrames);
+             this.playerControllers[i].Init(word, this.defaultAnswerBox);
 
              if (i == 0 && LoaderConfig.Instance != null && LoaderConfig.Instance.apiManager.peopleIcon != null)
              {
@@ -56,7 +56,7 @@ public class GameController : GameBaseController
              {
                  this.playerControllers[i].updatePlayerIcon(true, null, null, this.playersColor[i]);
              }
-         }*/
+         }
     }
 
 
@@ -69,7 +69,7 @@ public class GameController : GameBaseController
     public override void endGame()
     {
         bool showSuccess = false;
-        /*for (int i = 0; i < this.playerControllers.Count; i++)
+        for (int i = 0; i < this.playerControllers.Count; i++)
         {
             if(i < this.playerNumber)
             {
@@ -83,7 +83,7 @@ public class GameController : GameBaseController
                     this.endGamePage.updateFinalScore(i, playerController.Score);
                 }
             }
-        }*/
+        }
         this.endGamePage.setStatus(true, showSuccess);
 
         base.endGame();
@@ -95,13 +95,6 @@ public class GameController : GameBaseController
         QuestionController.Instance?.nextQuestion();
         string word = QuestionController.Instance.currentQuestion.correctAnswer;
         this.gridManager.UpdateGridWithWord(word);
-        /*for (int i = 0; i < this.playerNumber; i++)
-        {
-            if (this.playerControllers[i] != null)
-            {
-                this.playerControllers[i].NewQuestionWord(word);
-            }
-        }*/
     }
 
    
@@ -114,103 +107,8 @@ public class GameController : GameBaseController
         {
             this.UpdateNextQuestion();
         }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            this.showWordHints = !this.showWordHints;
-            /*for (int i = 0; i < this.playerControllers.Count; i++)
-            {
-                this.playerControllers[i].gridManager.showQuestionWordPosition = this.showWordHints;
-                this.playerControllers[i].gridManager.setLetterHint(this.showWordHints);
-            }*/
-        }
-
-        // Handle mouse input
-        if (Input.GetMouseButtonUp(0))
-        {
-           /* for (int i = 0; i < this.playerControllers.Count; i++)
-            {
-                if (this.playerControllers[i] != null && this.playerControllers[i].IsConnectWord)
-                {
-                    int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
-                    this.playerControllers[i].StopConnection(currentTime);
-                }
-            }*/
-        }
-
-        // Handle touch input
-        /*if (Input.touchCount > 0)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch touch = Input.GetTouch(i);
-                PlayerController player = this.GetPlayerByTouchIndex(i);
-
-                if (player != null)
-                {
-                    switch (touch.phase)
-                    {
-                        case TouchPhase.Began:
-                            player.StartConnection();
-                            HandleTouch(touch.position, player);
-                            break;
-                        case TouchPhase.Moved:
-                            if (player.IsConnectWord)
-                            {
-                                HandleTouch(touch.position, player);
-                            }
-                            break;
-                        case TouchPhase.Ended:
-                            int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
-                            player.StopConnection(currentTime);
-                            break;
-                    }
-                }
-            }
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            for (int i = 0; i < this.playerControllers.Count; i++)
-            {
-                if (this.playerControllers[i] != null && this.playerControllers[i].IsConnectWord)
-                {
-                    HandleMouse(this.playerControllers[i]);
-                }
-            }
-        }*/
+       
     }
 
-    /*private PlayerController GetPlayerByTouchIndex(int touchIndex)
-    {
-        // Map touch index to player index (assuming two players)
-        if (touchIndex < playerControllers.Count)
-        {
-            return playerControllers[touchIndex];
-        }
-        return null;
-    }
-
-    private void HandleMouse(PlayerController player)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        CheckCell(ray, player);
-    }
-
-    private void HandleTouch(Vector2 touchPosition, PlayerController player)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-        CheckCell(ray, player);
-    }
-
-    private void CheckCell(Ray ray, PlayerController player)
-    {
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            Cell cell = hit.collider.GetComponent<Cell>();
-            if (cell != null && !cell.isSelected)
-            {
-                player.SelectCell(cell);
-            }
-        }
-    }*/
+    
 }

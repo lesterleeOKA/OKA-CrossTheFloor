@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameBackground
+  - P1-controller
+  - P2-controller
+  - P1_Icon
+  - P2_Icon
+  - P1_Score
+  - P2_Score
+  - P1_ResultScore
+  - P2_ResultScore
   layers:
   - Default
   - TransparentFX
