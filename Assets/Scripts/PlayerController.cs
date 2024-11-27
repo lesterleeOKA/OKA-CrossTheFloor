@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : UserData
 {
-    public FixedJoystick variableJoystick;
+    public FixedJoystick joystick;
     public Scoring scoring;
     public string answer = string.Empty;
     public bool IsCheckedAnswer = false;
@@ -19,9 +19,9 @@ public class PlayerController : UserData
     public void Init(string _word, Sprite[] defaultAnswerBoxes = null)
     {
         this.characterTransform = transform;
-        if (this.variableJoystick == null)
+        if (this.joystick == null)
         {
-            this.variableJoystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
+            this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
         }
 
         if (this.PlayerIcons[0] == null)
@@ -169,9 +169,9 @@ public class PlayerController : UserData
 
     public void FixedUpdate()
     {
-        if(this.variableJoystick == null) return;
+        if(this.joystick == null) return;
         // Get the joystick input
-        Vector2 direction = new Vector2(this.variableJoystick.Horizontal, this.variableJoystick.Vertical);
+        Vector2 direction = new Vector2(this.joystick.Horizontal, this.joystick.Vertical);
 
         // Normalize the direction to prevent faster diagonal movement
         if (direction.magnitude > 1)
@@ -179,16 +179,16 @@ public class PlayerController : UserData
             direction.Normalize();
         }
 
-        var characterHeight = this.GetComponent<RectTransform>().sizeDelta.y;
-        // Calculate the new position
-        Vector3 newPosition = characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
+        Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
 
         // Clamp the position within the screen bounds
         newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
-        newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.1f));
+        newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
 
         // Update the character's position
         this.characterTransform.position = newPosition;
+
+        this.characterTransform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
 
     }
 }
