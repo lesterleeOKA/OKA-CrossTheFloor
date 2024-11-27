@@ -15,10 +15,16 @@ public class PlayerController : UserData
     public float speed;
     private Transform characterTransform;
     private float limitMovingYOffsetPercentage = 0.7f;
+    private Canvas characterCanvas = null;
+    public Vector3 startPosition = Vector3.zero;
+    public int characterOrder = 11;
 
     public void Init(string _word, Sprite[] defaultAnswerBoxes = null)
     {
         this.characterTransform = transform;
+        this.startPosition = this.characterTransform.position;
+        this.characterCanvas = this.GetComponent<Canvas>();
+        this.characterCanvas.sortingOrder = this.characterOrder;
         if (this.joystick == null)
         {
             this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
@@ -190,5 +196,81 @@ public class PlayerController : UserData
 
         this.characterTransform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
 
+
+        if (SortOrderController.Instance != null)
+        {
+            SortRoad highestRoad = null;
+
+            foreach (var road in SortOrderController.Instance.roads)
+            {
+                // Check if the character is above the road
+                if (this.characterTransform.position.y >= road.gameObject.transform.position.y)
+                {
+                    // Track the highest road that is below the character
+                    if (highestRoad == null || road.gameObject.transform.position.y > highestRoad.gameObject.transform.position.y)
+                    {
+                        highestRoad = road;
+                    }
+
+                   // road.showRoadHint(true);
+                }
+                /*else
+                {
+                    road.showRoadHint(false);
+                }*/
+            }
+
+            // If we found a road below the character, update the sorting order
+            if (highestRoad != null && this.characterCanvas != null)
+            {
+                int newOrder = highestRoad.orderLayer;
+                this.characterCanvas.sortingOrder = newOrder;
+            }
+            else
+            {
+                this.characterCanvas.sortingOrder = this.characterOrder;
+            }
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Check if the other collider has a specific tag, e.g., "Player"
+        if (other.CompareTag("Word"))
+        {
+            var cell = other.GetComponent<Cell>();
+            if (cell != null)
+            {
+                if (cell.isSelected)
+                {
+                    Debug.Log("Player has entered the trigger!" + other.name);
+                    this.answer += cell.content.text;
+                    cell.SetTextContent("");
+                }
+            }
+        }
+        else if (other.CompareTag("MoveItem"))
+        {
+            if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
+            {
+                this.characterTransform.position = this.startPosition;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Word"))
+        {
+            var cell = other.GetComponent<Cell>();
+            if (cell != null)
+            {
+                if (cell.isSelected)
+                {
+                    Debug.Log("Player has exited the trigger!" + other.name);
+                }
+            }
+        }
     }
 }

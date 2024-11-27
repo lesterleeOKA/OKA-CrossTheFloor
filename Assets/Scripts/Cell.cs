@@ -28,6 +28,7 @@ public class Cell : MonoBehaviour
             this.content.text = letter;
             this.content.color = this.defaultColor;
         }
+        this.isSelected = !string.IsNullOrEmpty(letter) ? true : false;
     }
 
     public void SetButtonColor(Color _color = default)
@@ -49,46 +50,5 @@ public class Cell : MonoBehaviour
         }
     }
 
-    public void Selected()
-    {
-        this.isSelected = true;
-        if (this.content != null)
-        {
-            this.content.color = this.selectedColor;
-        }
-        this.cellImage.color = this.defaultColor;
-        //this.cellImage.sprite = this.cellSprites[1];
-    }
-
-    public void DisSelected()
-    {
-        this.isSelected = false;
-        if (this.content != null)
-        {
-            this.content.color = this.defaultColor;
-        }
-        this.cellImage.color = this.selectedColor;
-        //this.cellImage.sprite = this.cellSprites[0];
-    }
-
-    /*public void OnPointerDown(PointerEventData eventData)
-    {
-        var player = GameController.Instance.playerControllers[this.playerId];
-        // Only initiate drawing if it's not already selected
-        if (!isSelected && !player.IsConnectWord)
-        {
-            player.StartConnection();
-            player.SelectCell(this);
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        var player = GameController.Instance.playerControllers[this.playerId];
-        if (player.IsConnectWord) // Check if drawing is active
-        {
-            player.SelectCell(this);
-        }
-    }*/
 
 }

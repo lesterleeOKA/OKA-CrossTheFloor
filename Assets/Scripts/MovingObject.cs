@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class MovingObject : MonoBehaviour
 {
+    public int sortLayer = 0;
     public Texture[] objectTextures;
     public float startPosX;
     public RawImage objectImage; // Reference to the RawImage UI element

@@ -13,6 +13,8 @@ TagManager:
   - P2_Score
   - P1_ResultScore
   - P2_ResultScore
+  - Word
+  - MoveItem
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4153721658127675050}
   - component: {fileID: 3037035484437151027}
   - component: {fileID: 1248651155699701206}
+  - component: {fileID: 1545523807557314333}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -112,6 +113,8 @@ MonoBehaviour:
   answerBox: {fileID: 0}
   answerBoxFrame: {fileID: 0}
   speed: 2
+  startPosition: {x: 0, y: 0, z: 0}
+  characterOrder: 10
 --- !u!223 &3037035484437151027
 Canvas:
   m_ObjectHideFlags: 0
@@ -152,3 +155,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!70 &1545523807557314333
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181589302056486099}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 120, y: 220}
+  m_Direction: 0
