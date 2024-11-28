@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class GridManager
 {
     public GameObject cellPrefab;
@@ -13,18 +14,27 @@ public class GridManager
     public int maxRetries = 10;
     private Cell[,] cells;
     public List<int> showCellIdList = new List<int>();
-    HashSet<Vector2Int> usedPositions = null;
-    List<Vector2Int> availablePositions = null;
-    HashSet<char> usedLetters = null;
+    private List<Vector2Int> availablePositions = null;
     public bool showQuestionWordPosition = false;
 
-    public Cell[,] CreateGrid(string initialWord, Sprite cellSprite = null)
+    public Cell[,] CreateGrid(string[] multipleWords = null, string spellWord = null, Sprite cellSprite = null)
     {
-        this.usedPositions = new HashSet<Vector2Int>();
-        this.usedLetters = new HashSet<char>();
+        bool isMCType = false;
+        char[] letters = null;
+        if (multipleWords != null && multipleWords.Length > 0)
+        {
+            isMCType = true;
+        }
+
+        if (!string.IsNullOrEmpty(spellWord))
+        {
+            letters = this.ShuffleStringToCharArray(spellWord);
+            isMCType = false;
+        }
+
         this.cells = new Cell[this.gridRow, this.gridColumn];
         this.availablePositions = new List<Vector2Int>();
-        var letters = this.ShuffleStringToCharArray(initialWord);
+
         for (int i = 0; i < this.gridRow; i++)
         {
             for (int j = 0; j < this.gridColumn; j++)
@@ -34,7 +44,6 @@ public class GridManager
         }
         System.Random random = new System.Random();
         this.availablePositions = this.availablePositions.OrderBy(x => random.Next()).ToList();
-
         for (int i = 0; i < this.gridRow; i++)
         {
             for (int j = 0; j < this.gridColumn; j++)
@@ -49,11 +58,15 @@ public class GridManager
             }
         }
 
-        this.showCellIdList = this.GenerateUniqueRandomIntegers(letters.Length, 0, cells.Length);
+        this.showCellIdList = this.GenerateUniqueRandomIntegers(isMCType? multipleWords.Length : letters.Length, 
+                                                                0, 
+                                                                cells.Length);
+
         for (int i=0; i < this.showCellIdList.Count; i++)
         {
             Vector2Int position =  this.availablePositions[this.showCellIdList[i]];
-            this.cells[position.x, position.y].SetTextContent(letters[i].ToString(), default, cellSprite);
+            this.cells[position.x, position.y].SetTextContent(isMCType? multipleWords[i]: letters[i].ToString(),                                                     default, 
+                                                              cellSprite);
         }
         
         return cells;
@@ -73,9 +86,9 @@ public class GridManager
 
         return letters;
     }
-    public void UpdateGridWithWord(string newWord)
+    public void UpdateGridWithWord(string[] newMultipleWords=null, string newWord=null)
     {
-       this.PlaceWordInGrid(newWord);
+       this.PlaceWordInGrid(newMultipleWords, newWord);
     }
 
     /*public void setLetterHint(bool status)
@@ -98,8 +111,21 @@ public class GridManager
     }*/
 
 
-    void PlaceWordInGrid(string _word)
+    void PlaceWordInGrid(string[] multipleWords = null, string spellWord = null)
     {
+        bool isMCType = false;
+        char[] letters = null;
+        if (multipleWords != null && multipleWords.Length > 0)
+        {
+            isMCType = true;
+        }
+
+        if (!string.IsNullOrEmpty(spellWord))
+        {
+            letters = this.ShuffleStringToCharArray(spellWord);
+            isMCType = false;
+        }
+
         System.Random random = new System.Random();
         this.availablePositions = this.availablePositions.OrderBy(x => random.Next()).ToList();
 
@@ -111,13 +137,14 @@ public class GridManager
             }
         }
 
-        var letters = this.ShuffleStringToCharArray(_word);
-        this.showCellIdList = this.GenerateUniqueRandomIntegers(letters.Length, 0, cells.Length);
+        this.showCellIdList = this.GenerateUniqueRandomIntegers(isMCType ? multipleWords.Length : letters.Length,
+                                                                0,
+                                                                cells.Length);
 
         for (int i = 0; i < this.showCellIdList.Count; i++)
         {
             Vector2Int position = availablePositions[this.showCellIdList[i]];
-            this.cells[position.x, position.y].SetTextContent(letters[i].ToString());
+            this.cells[position.x, position.y].SetTextContent(isMCType? multipleWords[i] : letters[i].ToString());
         }
     }
 

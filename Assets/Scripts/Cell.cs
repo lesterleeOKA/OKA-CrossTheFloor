@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Cell : MonoBehaviour
 {
@@ -25,10 +25,20 @@ public class Cell : MonoBehaviour
         this.cellImage.sprite = this.cellSprites[0];
 
         if (this.content != null) {
+            this.SetTextStatus(true);
             this.content.text = letter;
             this.content.color = this.defaultColor;
         }
         this.isSelected = !string.IsNullOrEmpty(letter) ? true : false;
+    }
+
+    public void SetTextStatus(bool show, float duration=0.5f)
+    {
+        if (this.content != null)
+        {
+            this.content.transform.DOScale(show ? 1f : 0f, duration).SetEase(Ease.InOutSine);
+            this.isSelected = show? true : false;
+        }
     }
 
     public void SetButtonColor(Color _color = default)

@@ -13,7 +13,9 @@ public class SortRoad : MonoBehaviour
         if(this.canvas == null)
         {
             this.canvas = this.GetComponent<Canvas>();
-            this.canvas.sortingOrder = this.orderLayer;
+            if(this.canvas != null ) {   
+               this.canvas.sortingOrder = this.orderLayer;
+            }
         }
 
         if(this.roadHintImage == null)
@@ -25,7 +27,9 @@ public class SortRoad : MonoBehaviour
         if(this.movingItem == null)
         {
             this.movingItem = this.GetComponentInChildren<MovingObject>();
-            this.movingItem.sortLayer = this.orderLayer;
+            if(this.movingItem != null) {
+               this.movingItem.sortLayer = this.orderLayer;
+            }
         }
     }
 

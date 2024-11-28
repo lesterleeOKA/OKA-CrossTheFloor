@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class GameController : GameBaseController
 {
     public static GameController Instance = null;
+    public CharacterSet[] characterSets;
     public GridManager gridManager;
     public Cell[,] grid;
     public GameObject playerPrefab;
@@ -27,36 +28,59 @@ public class GameController : GameBaseController
     private IEnumerator InitialQuestion()
     {
         QuestionController.Instance?.nextQuestion();
-        string word = QuestionController.Instance.currentQuestion.correctAnswer;
-
         yield return new WaitForEndOfFrame();
 
-        Sprite gridTexture = LoaderConfig.Instance.gameSetup.gridTexture != null ?
-            SetUI.ConvertTextureToSprite(LoaderConfig.Instance.gameSetup.gridTexture as Texture2D) : null;
+        if (QuestionController.Instance.currentQuestion.answersChoics != null &&
+            QuestionController.Instance.currentQuestion.answersChoics.Length > 0)
+        {
+            string[] answers = QuestionController.Instance.currentQuestion.answersChoics;
+            Sprite gridTexture = LoaderConfig.Instance.gameSetup.gridTexture != null ?
+                             SetUI.ConvertTextureToSprite(LoaderConfig.Instance.gameSetup.gridTexture as        Texture2D) : null;
 
-        this.grid = gridManager.CreateGrid(word, gridTexture);
+            this.grid = gridManager.CreateGrid(answers, null, gridTexture);
+        }
+        else
+        {
+            string word = QuestionController.Instance.currentQuestion.correctAnswer;
+            Sprite gridTexture = LoaderConfig.Instance.gameSetup.gridTexture != null ?
+                              SetUI.ConvertTextureToSprite(LoaderConfig.Instance.gameSetup.gridTexture as Texture2D) : null;
 
+            this.grid = gridManager.CreateGrid(null, word, gridTexture);
+        }
 
-         for (int i = 0; i < this.playerNumber; i++)
-         {
-             var playerController = GameObject.Instantiate(this.playerPrefab, this.parent).GetComponent<PlayerController>();
-             playerController.gameObject.name = "Player_" + i;
-             playerController.UserId = i;
-             this.playerControllers.Add(playerController);
-             this.playerControllers[i].Init(word, this.defaultAnswerBox);
+        for (int i = 0; i < this.maxPlayers; i++)
+        {
+            if(i< this.playerNumber)
+            {
+                var playerController = GameObject.Instantiate(this.playerPrefab, this.parent).GetComponent<PlayerController>();
+                playerController.gameObject.name = "Player_" + i;
+                playerController.UserId = i;
+                this.playerControllers.Add(playerController);
+                this.playerControllers[i].Init(this.characterSets[i], this.defaultAnswerBox);
 
-             if (i == 0 && LoaderConfig.Instance != null && LoaderConfig.Instance.apiManager.peopleIcon != null)
-             {
-                 var _playerName = LoaderConfig.Instance?.apiManager.loginName;
-                 var icon = SetUI.ConvertTextureToSprite(LoaderConfig.Instance.apiManager.peopleIcon as Texture2D);
-                 this.playerControllers[i].UserName = _playerName;
-                 this.playerControllers[i].updatePlayerIcon(true, _playerName, icon, this.playersColor[i]);
-             }
-             else
-             {
-                 this.playerControllers[i].updatePlayerIcon(true, null, null, this.playersColor[i]);
-             }
-         }
+                if (i == 0 && LoaderConfig.Instance != null && LoaderConfig.Instance.apiManager.peopleIcon != null)
+                {
+                    var _playerName = LoaderConfig.Instance?.apiManager.loginName;
+                    var icon = SetUI.ConvertTextureToSprite(LoaderConfig.Instance.apiManager.peopleIcon as Texture2D);
+                    this.playerControllers[i].UserName = _playerName;
+                    this.playerControllers[i].updatePlayerIcon(true, _playerName, icon, this.playersColor[i]);
+                }
+                else
+                {
+                    this.playerControllers[i].updatePlayerIcon(true, null, null, this.playersColor[i]);
+                }
+            }
+            else
+            {
+                int notUsedId = i + 1;
+                var notUsedPlayerIcon = GameObject.FindGameObjectWithTag("P" + notUsedId + "_Icon");
+                if (notUsedPlayerIcon != null) notUsedPlayerIcon.SetActive(false);
+
+                var notUsedPlayerController = GameObject.FindGameObjectWithTag("P" + notUsedId + "-controller");
+                if(notUsedPlayerController != null) notUsedPlayerController.SetActive(false);
+            }
+        }
+        
     }
 
 
@@ -93,12 +117,22 @@ public class GameController : GameBaseController
     {
         LogController.Instance?.debug("Next Question");
         QuestionController.Instance?.nextQuestion();
-        string word = QuestionController.Instance.currentQuestion.correctAnswer;
-        this.gridManager.UpdateGridWithWord(word);
+
+        if (QuestionController.Instance.currentQuestion.answersChoics != null &&
+            QuestionController.Instance.currentQuestion.answersChoics.Length > 0)
+        {
+            string[] answers = QuestionController.Instance.currentQuestion.answersChoics;
+            this.gridManager.UpdateGridWithWord(answers, null);
+        }
+        else
+        {
+            string word = QuestionController.Instance.currentQuestion.correctAnswer;
+            this.gridManager.UpdateGridWithWord(null, word);
+        }
     }
 
    
-
+    
     private void Update()
     {
         if(!this.playing) return;
@@ -107,7 +141,33 @@ public class GameController : GameBaseController
         {
             this.UpdateNextQuestion();
         }
-       
+
+        if(this.playerControllers.Count == 0) return;
+
+        for (int i = 0; i < this.playerNumber; i++)
+        {
+            if (this.playerControllers[i] != null)
+            {
+                var characterCanvas = this.playerControllers[i].characterCanvas;
+                if (characterCanvas.sortingOrder == 1) // the toppest road order
+                {
+                    int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
+
+                    this.playerControllers[i].checkAnswer(currentTime, ()=>
+                    {
+                        for (int i = 0; i < this.playerNumber; i++)
+                        {
+                            if (this.playerControllers[i] != null)
+                            {
+                                this.playerControllers[i].playerReset();
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        
     }
 
     
