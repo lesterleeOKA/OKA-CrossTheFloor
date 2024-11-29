@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +24,7 @@ public class PlayerController : UserData
     private CharacterAnimation characterAnimation = null;
     private TextMeshProUGUI answerBox = null;
     private bool isWalking = false;
+    public List<Cell> collectedCell = new List<Cell>();
 
     public void Init(CharacterSet characterSet = null, Sprite[] defaultAnswerBoxes = null)
     {
@@ -194,9 +197,10 @@ public class PlayerController : UserData
         this.characterCanvas.sortingOrder = this.characterOrder;
         this.characterTransform.localPosition = this.startPosition;
         this.setAnswer("");
+        this.collectedCell.Clear();
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         if(this.joystick == null) return;
         Vector2 direction = new Vector2(this.joystick.Horizontal, this.joystick.Vertical);
@@ -236,8 +240,10 @@ public class PlayerController : UserData
         {
             SortRoad highestRoad = null;
 
-            foreach (var road in SortOrderController.Instance.roads)
+            for (int i = 0; i < SortOrderController.Instance.roads.Length; i++)
             {
+                var road = SortOrderController.Instance.roads[i];
+
                 // Check if the character is above the road
                 if (this.characterTransform.position.y >= road.gameObject.transform.position.y)
                 {
@@ -247,7 +253,7 @@ public class PlayerController : UserData
                         highestRoad = road;
                     }
 
-                   // road.showRoadHint(true);
+                    // road.showRoadHint(true);
                 }
                 /*else
                 {
@@ -291,6 +297,39 @@ public class PlayerController : UserData
             this.answerBox.text = this.answer;
     }
 
+    public void deductAnswer()
+    {
+       var gridManager = GameController.Instance.gridManager;
+        if (this.answer.Length > 0)
+        {
+            string deductedChar;
+            if (gridManager.isMCType)
+            {
+                deductedChar = this.answer;
+                this.setAnswer("");
+            }
+            else
+            {
+                deductedChar = this.answer[this.answer.Length - 1].ToString();
+                this.answer = this.answer.Substring(0, this.answer.Length - 1);
+                if (this.answerBox != null)
+                    this.answerBox.text = this.answer;
+
+                if (this.answer.Length == 0)
+                {
+                    SetUI.Set(this.answerBoxCg, false);
+                }
+            }
+
+            if (this.collectedCell.Count > 0)
+            {
+                var latestCell= this.collectedCell[this.collectedCell.Count - 1];
+                latestCell.SetTextStatus(true);
+                this.collectedCell.RemoveAt(this.collectedCell.Count - 1);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the other collider has a specific tag, e.g., "Player"
@@ -304,15 +343,18 @@ public class PlayerController : UserData
                     LogController.Instance.debug("Player has entered the trigger!" + other.name);
                     AudioController.Instance?.PlayAudio(9);
                     this.setAnswer(cell.content.text);
+                    this.collectedCell.Add(cell);
                     cell.SetTextStatus(false);
                 }
             }
         }
         else if (other.CompareTag("MoveItem"))
         {
-            if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
+            //if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
+            if(this.characterCanvas.sortingOrder != 1)
             {
                 AudioController.Instance?.PlayAudio(8);
+                this.deductAnswer();
                 this.characterTransform.localPosition = this.startPosition;
             }
         }

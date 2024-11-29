@@ -30,6 +30,7 @@ public class Cell : MonoBehaviour
             this.content.color = this.defaultColor;
         }
         this.isSelected = !string.IsNullOrEmpty(letter) ? true : false;
+        this.setCellStatus(false);
     }
 
     public void SetTextStatus(bool show, float duration=0.5f)
@@ -57,6 +58,14 @@ public class Cell : MonoBehaviour
                 this.content.color = _color;
             else
                 this.content.color = Color.black;
+        }
+    }
+
+    public void setCellStatus(bool show=false)
+    {
+        if(this.cellImage != null)
+        {
+            this.cellImage.enabled = show;
         }
     }
 

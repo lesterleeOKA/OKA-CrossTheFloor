@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -222,8 +222,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2c06d55a095717c4f9daa6a15d09ed9b, type: 3}
   startPosX: 1420
   objectImage: {fileID: 155299642}
-  minSpeed: 2
-  maxSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
 --- !u!61 &155299645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 22.68863, y: 25.300104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -267,7 +267,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 400, y: 200}
+  m_Size: {x: 354.62274, y: 123.65567}
   m_EdgeRadius: 0
 --- !u!50 &155299646
 Rigidbody2D:
@@ -1036,10 +1036,10 @@ RectTransform:
   - {fileID: 485998075}
   m_Father: {fileID: 739772688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 416}
-  m_SizeDelta: {x: 0, y: 144.53003}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -428.37}
+  m_SizeDelta: {x: 0, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479700361
 MonoBehaviour:
@@ -1277,8 +1277,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2c06d55a095717c4f9daa6a15d09ed9b, type: 3}
   startPosX: -1420
   objectImage: {fileID: 485998076}
-  minSpeed: 2
-  maxSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
 --- !u!61 &485998079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 22.68863, y: 25.300104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1322,7 +1322,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 400, y: 200}
+  m_Size: {x: 354.62274, y: 123.65567}
   m_EdgeRadius: 0
 --- !u!50 &485998080
 Rigidbody2D:
@@ -2231,10 +2231,10 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 400, y: 150}
-  m_Spacing: {x: 65, y: 40}
-  m_Constraint: 1
-  m_ConstraintCount: 5
+  m_CellSize: {x: 300, y: 150}
+  m_Spacing: {x: 25, y: 40}
+  m_Constraint: 2
+  m_ConstraintCount: 4
 --- !u!225 &724519064
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2370,7 +2370,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739772684}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2717,6 +2717,10 @@ PrefabInstance:
     - target: {fileID: 4036164337052904858, guid: a67446a986d24c84998264dd889769ff, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036164337052904858, guid: a67446a986d24c84998264dd889769ff, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7905023497832922030, guid: a67446a986d24c84998264dd889769ff, type: 3}
       propertyPath: m_Pivot.x
@@ -4087,8 +4091,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2c06d55a095717c4f9daa6a15d09ed9b, type: 3}
   startPosX: -1420
   objectImage: {fileID: 1439899776}
-  minSpeed: 2
-  maxSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
 --- !u!50 &1439899779
 Rigidbody2D:
   serializedVersion: 4
@@ -4148,7 +4152,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 22.68863, y: 25.300104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4159,7 +4163,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 400, y: 200}
+  m_Size: {x: 354.62274, y: 123.65567}
   m_EdgeRadius: 0
 --- !u!1 &1444723323
 GameObject:
@@ -4676,9 +4680,9 @@ RectTransform:
   - {fileID: 155299641}
   m_Father: {fileID: 739772688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 560}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -260}
   m_SizeDelta: {x: 0, y: 144.53003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768093777
@@ -5519,8 +5523,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2c06d55a095717c4f9daa6a15d09ed9b, type: 3}
   startPosX: 1420
   objectImage: {fileID: 1841190205}
-  minSpeed: 2
-  maxSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
 --- !u!61 &1841190208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5553,7 +5557,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 22.68863, y: 25.300104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5564,7 +5568,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 400, y: 200}
+  m_Size: {x: 354.62274, y: 123.65567}
   m_EdgeRadius: 0
 --- !u!50 &1841190209
 Rigidbody2D:
@@ -5767,8 +5771,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2c06d55a095717c4f9daa6a15d09ed9b, type: 3}
   startPosX: -1420
   objectImage: {fileID: 1949816972}
-  minSpeed: 2
-  maxSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
 --- !u!61 &1949816975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5801,7 +5805,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 22.68863, y: 25.300104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5812,7 +5816,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 400, y: 200}
+  m_Size: {x: 354.62274, y: 123.65567}
   m_EdgeRadius: 0
 --- !u!50 &1949816976
 Rigidbody2D:
@@ -6219,11 +6223,12 @@ MonoBehaviour:
   gridManager:
     cellPrefab: {fileID: 5728923318765693052, guid: 5a39f2cf240def340ac0598a58a9c2a1, type: 3}
     parent: {fileID: 724519060}
-    gridRow: 5
+    gridRow: 7
     gridColumn: 4
     maxRetries: 10
     showCellIdList: 
     showQuestionWordPosition: 1
+    isMCType: 0
   playerPrefab: {fileID: 1181589302056486099, guid: ae2bf29d6e4aac3479d40ce0e41c0ae3, type: 3}
   parent: {fileID: 739772688}
   playersColor:

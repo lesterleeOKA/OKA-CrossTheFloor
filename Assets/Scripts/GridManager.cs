@@ -16,20 +16,20 @@ public class GridManager
     public List<int> showCellIdList = new List<int>();
     private List<Vector2Int> availablePositions = null;
     public bool showQuestionWordPosition = false;
+    public bool isMCType = false;
 
     public Cell[,] CreateGrid(string[] multipleWords = null, string spellWord = null, Sprite cellSprite = null)
     {
-        bool isMCType = false;
         char[] letters = null;
         if (multipleWords != null && multipleWords.Length > 0)
         {
-            isMCType = true;
+            this.isMCType = true;
         }
 
         if (!string.IsNullOrEmpty(spellWord))
         {
             letters = this.ShuffleStringToCharArray(spellWord);
-            isMCType = false;
+            this.isMCType = false;
         }
 
         this.cells = new Cell[this.gridRow, this.gridColumn];
@@ -58,14 +58,14 @@ public class GridManager
             }
         }
 
-        this.showCellIdList = this.GenerateUniqueRandomIntegers(isMCType? multipleWords.Length : letters.Length, 
+        this.showCellIdList = this.GenerateUniqueRandomIntegers(this.isMCType ? multipleWords.Length : letters.Length, 
                                                                 0, 
                                                                 cells.Length);
 
         for (int i=0; i < this.showCellIdList.Count; i++)
         {
             Vector2Int position =  this.availablePositions[this.showCellIdList[i]];
-            this.cells[position.x, position.y].SetTextContent(isMCType? multipleWords[i]: letters[i].ToString(),                                                     default, 
+            this.cells[position.x, position.y].SetTextContent(this.isMCType ? multipleWords[i]: letters[i].ToString(),                                                     default, 
                                                               cellSprite);
         }
         
@@ -91,39 +91,27 @@ public class GridManager
        this.PlaceWordInGrid(newMultipleWords, newWord);
     }
 
-    /*public void setLetterHint(bool status)
+    public void setAllCellsStatus(bool status = false)
     {
-        foreach (var wordCellPos in this.questionCells)
+        foreach (var cell in cells)
         {
-            this.cells[wordCellPos.x, wordCellPos.y].SetButtonColor(status? Color.yellow : Color.white);
+            cell.setCellStatus(status);
         }
-    }*/
-
-    /*public void setFirstLetterHint(bool status)
-    {
-        for(int i=0; i< this.questionCells.Count; i++)
-        {
-            if (i == 0)
-            {
-                this.cells[this.questionCells[i].x, this.questionCells[i].y].SetTextColor(status ? Color.yellow : Color.black);
-            }
-        }
-    }*/
+    }
 
 
     void PlaceWordInGrid(string[] multipleWords = null, string spellWord = null)
     {
-        bool isMCType = false;
         char[] letters = null;
         if (multipleWords != null && multipleWords.Length > 0)
         {
-            isMCType = true;
+            this.isMCType = true;
         }
 
         if (!string.IsNullOrEmpty(spellWord))
         {
             letters = this.ShuffleStringToCharArray(spellWord);
-            isMCType = false;
+            this.isMCType = false;
         }
 
         System.Random random = new System.Random();
@@ -137,14 +125,14 @@ public class GridManager
             }
         }
 
-        this.showCellIdList = this.GenerateUniqueRandomIntegers(isMCType ? multipleWords.Length : letters.Length,
+        this.showCellIdList = this.GenerateUniqueRandomIntegers(this.isMCType ? multipleWords.Length : letters.Length,
                                                                 0,
                                                                 cells.Length);
 
         for (int i = 0; i < this.showCellIdList.Count; i++)
         {
             Vector2Int position = availablePositions[this.showCellIdList[i]];
-            this.cells[position.x, position.y].SetTextContent(isMCType? multipleWords[i] : letters[i].ToString());
+            this.cells[position.x, position.y].SetTextContent(this.isMCType ? multipleWords[i] : letters[i].ToString());
         }
     }
 

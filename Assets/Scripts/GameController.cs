@@ -12,7 +12,7 @@ public class GameController : GameBaseController
     public Color[] playersColor;
     public Sprite[] defaultAnswerBox;
     public List<PlayerController> playerControllers = new List<PlayerController>();
-    private bool showWordHints = false;
+    private bool showCells = false;
 
     protected override void Awake()
     {
@@ -141,8 +141,13 @@ public class GameController : GameBaseController
         {
             this.UpdateNextQuestion();
         }
+        else if(Input.GetKeyDown(KeyCode.F1))
+        {
+            this.showCells = !this.showCells;
+             this.gridManager.setAllCellsStatus(this.showCells);
+        }
 
-        if(this.playerControllers.Count == 0) return;
+        if (this.playerControllers.Count == 0) return;
 
         for (int i = 0; i < this.playerNumber; i++)
         {
