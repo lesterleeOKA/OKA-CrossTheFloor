@@ -149,11 +149,26 @@ public class GameController : GameBaseController
 
         if (this.playerControllers.Count == 0) return;
 
+        for (int j = 0; j < SortOrderController.Instance.roads.Length; j++)
+        {
+            var road = SortOrderController.Instance.roads[j];
+            road.showRoadHint(false);
+            for (int i = 0; i < this.playerNumber; i++)
+            {
+                var characterCanvas = this.playerControllers[i].characterCanvas;
+                if (characterCanvas.sortingOrder == road.orderLayer)
+                {
+                    road.showRoadHint(true);
+                }
+            }  
+        }
+
         for (int i = 0; i < this.playerNumber; i++)
         {
             if (this.playerControllers[i] != null)
             {
                 var characterCanvas = this.playerControllers[i].characterCanvas;
+
                 if (characterCanvas.sortingOrder == 1) // the toppest road order
                 {
                     int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
@@ -172,8 +187,9 @@ public class GameController : GameBaseController
             }
         }
 
-        
-    }
 
-    
+        
+
+
+    } 
 }

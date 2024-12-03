@@ -15,7 +15,8 @@ public class PlayerController : UserData
     public CanvasGroup answerBoxCg;
     public Image answerBoxFrame;
     public float speed;
-    private Transform characterTransform;
+    [HideInInspector]
+    public Transform characterTransform;
     private float limitMovingYOffsetPercentage = 0.7f;
     [HideInInspector]
     public Canvas characterCanvas = null;
@@ -243,7 +244,6 @@ public class PlayerController : UserData
             for (int i = 0; i < SortOrderController.Instance.roads.Length; i++)
             {
                 var road = SortOrderController.Instance.roads[i];
-
                 // Check if the character is above the road
                 if (this.characterTransform.position.y >= road.gameObject.transform.position.y)
                 {
@@ -252,18 +252,13 @@ public class PlayerController : UserData
                     {
                         highestRoad = road;
                     }
-
-                    // road.showRoadHint(true);
                 }
-                /*else
-                {
-                    road.showRoadHint(false);
-                }*/
             }
 
             // If we found a road below the character, update the sorting order
             if (highestRoad != null && this.characterCanvas != null)
             {
+
                 int newOrder = highestRoad.orderLayer;
                 this.characterCanvas.sortingOrder = newOrder;
             }
@@ -272,6 +267,8 @@ public class PlayerController : UserData
                 this.characterCanvas.sortingOrder = this.characterOrder;
             }
         }
+
+
     }
 
     public void setAnswer(string content)
@@ -350,8 +347,8 @@ public class PlayerController : UserData
         }
         else if (other.CompareTag("MoveItem"))
         {
-            //if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
-            if(this.characterCanvas.sortingOrder != 1)
+           if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
+           // if(this.characterCanvas.sortingOrder != 1)
             {
                 AudioController.Instance?.PlayAudio(8);
                 this.deductAnswer();
