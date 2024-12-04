@@ -258,7 +258,6 @@ public class PlayerController : UserData
             // If we found a road below the character, update the sorting order
             if (highestRoad != null && this.characterCanvas != null)
             {
-
                 int newOrder = highestRoad.orderLayer;
                 this.characterCanvas.sortingOrder = newOrder;
             }
@@ -347,8 +346,8 @@ public class PlayerController : UserData
         }
         else if (other.CompareTag("MoveItem"))
         {
-           if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
-           // if(this.characterCanvas.sortingOrder != 1)
+           //if(this.characterCanvas.sortingOrder == other.GetComponent<MovingObject>().sortLayer)
+            if(this.characterCanvas.sortingOrder != 1)
             {
                 AudioController.Instance?.PlayAudio(8);
                 this.deductAnswer();
