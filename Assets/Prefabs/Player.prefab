@@ -115,9 +115,11 @@ MonoBehaviour:
   answerBoxCg: {fileID: 5342726528185133642}
   answerBoxFrame: {fileID: 0}
   speed: 2
+  characterTransform: {fileID: 0}
   characterCanvas: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   characterOrder: 11
+  collectedCell: []
 --- !u!223 &3037035484437151027
 Canvas:
   m_ObjectHideFlags: 0
@@ -190,8 +192,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -23.189896}
-  m_Size: {x: 120, y: 120}
+  m_Offset: {x: -4.9036255, y: -29.074257}
+  m_Size: {x: 70, y: 70}
   m_Direction: 0
 --- !u!114 &4424651920430363356
 MonoBehaviour:

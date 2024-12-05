@@ -156,7 +156,7 @@ public class GameController : GameBaseController
             for (int i = 0; i < this.playerNumber; i++)
             {
                 var characterCanvas = this.playerControllers[i].characterCanvas;
-                if (characterCanvas.sortingOrder == road.orderLayer)
+                if (characterCanvas.sortingOrder == road.orderLayer && this.showCells)
                 {
                     road.showRoadHint(true);
                 }

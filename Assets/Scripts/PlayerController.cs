@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -121,7 +120,7 @@ public class PlayerController : UserData
                         correctId = 2;
                         score = eachQAScore; // load from question settings score of each question
 
-                        Debug.Log("Each QA Score!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + eachQAScore + "______answer" + this.answer);
+                        LogController.Instance?.debug("Each QA Score!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + eachQAScore + "______answer" + this.answer);
                         currentQAPercent = 100f;
                     }
                     else
@@ -204,20 +203,27 @@ public class PlayerController : UserData
     public void Update()
     {
         if(this.joystick == null) return;
-        Vector2 direction = new Vector2(this.joystick.Horizontal, this.joystick.Vertical);
+        Vector2 direction = Vector2.zero;
 
-        if (direction.magnitude > 1)
+        if (this.characterCanvas.sortingOrder != 1)
         {
-            direction.Normalize();
+            direction = new Vector2(this.joystick.Horizontal, this.joystick.Vertical);
+            if (direction.magnitude > 1)
+            {
+                direction.Normalize();
+            }
+            Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
+            newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
+            newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
+
+            this.characterTransform.position = newPosition;
+            this.characterTransform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
+            this.answerBox.transform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);            
         }
-
-        Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
-        newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
-        newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
-
-        this.characterTransform.position = newPosition;
-        this.characterTransform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
-        this.answerBox.transform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
+        else
+        {
+            this.characterTransform.localPosition = new Vector2(this.characterTransform.localPosition.x, 340f);
+        }
 
         if (direction.magnitude > 0.1f)
         {
@@ -235,7 +241,6 @@ public class PlayerController : UserData
                 this.characterAnimation.setIdling(); // Switch to idling animation
             }
         }
-
 
         if (SortOrderController.Instance != null)
         {
