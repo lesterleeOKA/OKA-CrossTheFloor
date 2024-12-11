@@ -28,7 +28,7 @@ public class SortRoad : MonoBehaviour
         {
             this.movingItem = this.GetComponentInChildren<MovingObject>();
             if(this.movingItem != null) {
-               this.movingItem.sortLayer = this.orderLayer;
+               this.movingItem.SortLayer = this.orderLayer + 1;
             }
         }
     }

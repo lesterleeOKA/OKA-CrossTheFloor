@@ -5,6 +5,7 @@ using DG.Tweening;
 public class MovingObject : MonoBehaviour
 {
     public int sortLayer = 0;
+    public Canvas canvas;
     public Texture[] objectTextures;
     public float startPosX;
     public RawImage objectImage; // Reference to the RawImage UI element
@@ -24,6 +25,21 @@ public class MovingObject : MonoBehaviour
         None,
         Left,
         Right
+    }
+
+    public int SortLayer
+    {
+        set { 
+            this.sortLayer = value;
+            if (this.canvas != null)
+            {
+                this.canvas.sortingOrder = this.sortLayer;
+            }
+        }
+        get
+        {
+            return this.sortLayer;
+        }
     }
 
     private void StartNewMovement()
