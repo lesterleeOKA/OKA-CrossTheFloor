@@ -46,6 +46,8 @@ public class MovingObject : MonoBehaviour
     {
         if(this.objectImage != null) this.objectImage.texture = this.randomObjectTex;
         // Randomize speed
+        this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
+        this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;
         float speed = Random.Range(minSpeed, maxSpeed);
 
         // Determine the target position
