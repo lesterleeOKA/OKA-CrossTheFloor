@@ -6,7 +6,7 @@ public class CharacterAnimation : MonoBehaviour
 {
     public CharacterSet characterSet;
     public float frameRate = 10f; // Frame rate for the animation
-
+    public ParticleSystem runEffect;
     private RawImage characterImage;
     public int currentFrame = 0;
     private Coroutine walkingCoroutine;
@@ -17,10 +17,20 @@ public class CharacterAnimation : MonoBehaviour
         this.setIdling();
     }
 
-    public void PlayWalking()
+    void setParticleLayer(int layerOrder)
+    {
+        if (this.runEffect != null)
+        {
+            this.runEffect.GetComponent<ParticleSystemRenderer>().sortingOrder = layerOrder;
+        }
+    }
+
+    public void PlayWalking(int layerOrder)
     {
         // If the walking coroutine is already running, do nothing
         if (this.walkingCoroutine != null) return;
+
+        this.setParticleLayer(layerOrder);
 
         // Start the walking animation coroutine
         this.walkingCoroutine = StartCoroutine(this.walkingAnimation());
@@ -37,6 +47,9 @@ public class CharacterAnimation : MonoBehaviour
             }
 
             currentFrame = (currentFrame + 1) % this.characterSet.walkingAnimationTextures.Length;
+            if(this.runEffect != null && !this.runEffect.isPlaying) { 
+                this.runEffect.Play();
+            }
             yield return new WaitForSeconds(1f / this.frameRate); // Wait for the frame duration
         }
     }
@@ -47,6 +60,7 @@ public class CharacterAnimation : MonoBehaviour
         // Stop the walking coroutine if it's running
         if (this.walkingCoroutine != null)
         {
+            if (this.runEffect != null) this.runEffect.Stop();
             StopCoroutine(this.walkingCoroutine);
             this.walkingCoroutine = null; // Clear the reference
         }

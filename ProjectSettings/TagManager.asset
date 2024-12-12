@@ -15,6 +15,9 @@ TagManager:
   - P2_ResultScore
   - Word
   - MoveItem
+  - StartPoints
+  - SubmitPoint
+  - Trails
   layers:
   - Default
   - TransparentFX

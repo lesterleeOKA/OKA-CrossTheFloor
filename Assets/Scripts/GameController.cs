@@ -88,6 +88,7 @@ public class GameController : GameBaseController
     {
         base.enterGame();
         StartCoroutine(this.InitialQuestion());
+        SortOrderController.Instance?.startMovingObjects();
     }
 
     public override void endGame()
@@ -167,9 +168,9 @@ public class GameController : GameBaseController
         {
             if (this.playerControllers[i] != null)
             {
-                var characterCanvas = this.playerControllers[i].characterCanvas;
+                var player = this.playerControllers[i];
 
-                if (characterCanvas.sortingOrder == 1) // the toppest road order
+                if (player.stayTrail == StayTrail.submitPoint)
                 {
                     int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
 
@@ -184,6 +185,10 @@ public class GameController : GameBaseController
                         }
                     });
                 }
+                else if(player.stayTrail == StayTrail.startPoints)
+                {
+                    player.autoDeductAnswer();
+                }
             }
         }
 
@@ -192,4 +197,12 @@ public class GameController : GameBaseController
 
 
     } 
+}
+
+
+public enum StayTrail
+{
+    startPoints,
+    trails,
+    submitPoint
 }

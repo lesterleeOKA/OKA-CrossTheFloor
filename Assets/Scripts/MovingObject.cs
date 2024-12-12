@@ -11,13 +11,13 @@ public class MovingObject : MonoBehaviour
     public RawImage objectImage; // Reference to the RawImage UI element
     public float minSpeed = 1f; // Minimum speed
     public float maxSpeed = 5f; // Maximum speed
-    private RectTransform rectTransform = null; // RectTransform of the RawImage
+    private RectTransform rectTransform = null;
+    private Tween currentTween = null;
     // Start is called before the first frame update
     void Start()
     {
         if (this.objectImage == null) this.objectImage = this.GetComponent<RawImage>();
         if (this.rectTransform == null) this.rectTransform = this.GetComponent<RectTransform>();
-        this.StartNewMovement();
     }
 
     public enum MovingDirection
@@ -42,22 +42,38 @@ public class MovingObject : MonoBehaviour
         }
     }
 
-    private void StartNewMovement()
+    public void StartNewMovement()
     {
-        if(this.objectImage != null) this.objectImage.texture = this.randomObjectTex;
-        // Randomize speed
-        this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
-        this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;
-        float speed = Random.Range(minSpeed, maxSpeed);
+        if(GameController.Instance.playing) { 
+            if(this.objectImage != null) this.objectImage.texture = this.randomObjectTex;
+            // Randomize speed
+            this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
+            this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;
+            float speed = Random.Range(minSpeed, maxSpeed);
 
-        // Determine the target position
-        Vector2 targetPosition = Vector2.zero;
-
-        this.rectTransform.anchoredPosition = new Vector2(this.startPosX, this.rectTransform.anchoredPosition.y);
-        targetPosition = new Vector2(-(this.startPosX), this.rectTransform.anchoredPosition.y);
-        // Use DOTween to move the car
-        this.rectTransform.DOAnchorPos(targetPosition, speed).SetEase(Ease.Linear).OnComplete(StartNewMovement);
+            // Determine the target position
+            Vector2 targetPosition = Vector2.zero;
+            this.rectTransform.anchoredPosition = new Vector2(this.startPosX, this.rectTransform.anchoredPosition.y);
+            targetPosition = new Vector2(-(this.startPosX), this.rectTransform.anchoredPosition.y);
+            // Use DOTween to move the car
+            this.currentTween = this.rectTransform.DOAnchorPos(targetPosition, speed).SetEase(Ease.Linear).OnComplete(this.StartNewMovement);
+        }
+        else
+        {
+            this.StopMovement();
+        }
     }
+
+    public void StopMovement()
+    {
+        // Stop the current tween
+        if (this.currentTween != null)
+        {
+            this.currentTween.Kill();
+            this.currentTween = null;
+        }
+    }
+
 
     public Texture randomObjectTex
     {
@@ -69,8 +85,7 @@ public class MovingObject : MonoBehaviour
                 return this.objectTextures[randomId];
             }
             else return null;
-        }
-
-    
+        }   
     }
+
 }

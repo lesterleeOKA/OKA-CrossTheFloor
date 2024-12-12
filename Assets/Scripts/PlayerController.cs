@@ -25,10 +25,13 @@ public class PlayerController : UserData
     private TextMeshProUGUI answerBox = null;
     private bool isWalking = false;
     public List<Cell> collectedCell = new List<Cell>();
+    public SortRoad highestRoad = null;
+    public StayTrail stayTrail = StayTrail.startPoints;
+    public float countGetAnswerAtStartPoints = 2f;
 
     public void Init(CharacterSet characterSet = null, Sprite[] defaultAnswerBoxes = null)
     {
-        float posX = UnityEngine.Random.Range(-850f, 850f);
+        float posX = UnityEngine.Random.Range(-800f, 800f);
         float posY = UnityEngine.Random.Range(-550f, -700f);
         this.startPosition = new Vector3(posX, posY);
         this.characterTransform = this.transform;
@@ -186,18 +189,26 @@ public class PlayerController : UserData
         GameController.Instance?.UpdateNextQuestion();
         //this.playerReset();
         onCompleted?.Invoke();
-        this.IsCheckedAnswer = false;
+    }
+
+    public void characterReset()
+    {
+        if(this.collectedCell.Count > 0) {
+            this.stayTrail = StayTrail.startPoints;
+            float posX = UnityEngine.Random.Range(-800f, 800f);
+            float posY = UnityEngine.Random.Range(-550f, -700f);
+            this.startPosition = new Vector3(posX, posY);
+            this.characterCanvas.sortingOrder = this.characterOrder;
+            this.characterTransform.localPosition = this.startPosition;
+            this.collectedCell.Clear();
+        }
     }
 
     public void playerReset()
     {
-        float posX = UnityEngine.Random.Range(-850f, 850f);
-        float posY = UnityEngine.Random.Range(-550f, -700f);
-        this.startPosition = new Vector3(posX, posY);
-        this.characterCanvas.sortingOrder = this.characterOrder;
-        this.characterTransform.localPosition = this.startPosition;
         this.setAnswer("");
-        this.collectedCell.Clear();
+        this.characterReset();
+        this.IsCheckedAnswer = false;
     }
 
     public void Update()
@@ -212,6 +223,7 @@ public class PlayerController : UserData
             {
                 direction.Normalize();
             }
+            this.speed = LoaderConfig.Instance.gameSetup.playersMovingSpeed;
             Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
             newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
             newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
@@ -230,7 +242,7 @@ public class PlayerController : UserData
             if (!this.isWalking)
             {
                 this.isWalking = true; // Set walking state
-                this.characterAnimation.PlayWalking(); // Start walking animation
+                this.characterAnimation.PlayWalking(this.characterOrder); // Start walking animation
             }
         }
         else
@@ -244,7 +256,7 @@ public class PlayerController : UserData
 
         if (SortOrderController.Instance != null)
         {
-            SortRoad highestRoad = null;
+            this.highestRoad = null;
 
             for (int i = 0; i < SortOrderController.Instance.roads.Length; i++)
             {
@@ -253,17 +265,33 @@ public class PlayerController : UserData
                 if (this.characterTransform.position.y >= road.gameObject.transform.position.y)
                 {
                     // Track the highest road that is below the character
-                    if (highestRoad == null || road.gameObject.transform.position.y > highestRoad.gameObject.transform.position.y)
+                    if (this.highestRoad == null || road.gameObject.transform.position.y > this.highestRoad.gameObject.transform.position.y)
                     {
-                        highestRoad = road;
+                        this.highestRoad = road;
+                        var trailTag = this.highestRoad.gameObject.tag;
+                        switch (trailTag)
+                        {
+                            case "StarPoints":
+                                this.stayTrail = StayTrail.startPoints;
+                                break;
+                            case "Trails":
+                                this.stayTrail = StayTrail.trails;
+                                break;
+                            case "SubmitPoint":
+                                this.stayTrail = StayTrail.submitPoint;
+                                break;
+                            default:
+                                this.stayTrail = StayTrail.startPoints;
+                                break;
+                        }
                     }
                 }
             }
 
             // If we found a road below the character, update the sorting order
-            if (highestRoad != null && this.characterCanvas != null)
+            if (this.highestRoad != null && this.characterCanvas != null)
             {
-                int newOrder = highestRoad.orderLayer;
+                int newOrder = this.highestRoad.orderLayer;
                 this.characterCanvas.sortingOrder = newOrder;
             }
             else
@@ -296,6 +324,25 @@ public class PlayerController : UserData
 
         if(this.answerBox != null)
             this.answerBox.text = this.answer;
+    }
+
+    public void autoDeductAnswer()
+    {
+        if(this.collectedCell.Count > 0) {
+            if (this.countGetAnswerAtStartPoints > 0f)
+            {
+                this.countGetAnswerAtStartPoints -= Time.deltaTime;
+            }
+            else
+            {
+                this.deductAnswer();
+                this.countGetAnswerAtStartPoints = 2f;
+            }
+        }
+        else
+        {
+            this.countGetAnswerAtStartPoints = 2f;
+        }
     }
 
     public void deductAnswer()
@@ -343,6 +390,16 @@ public class PlayerController : UserData
                 {
                     LogController.Instance.debug("Player has entered the trigger!" + other.name);
                     AudioController.Instance?.PlayAudio(9);
+
+                    var gridManager = GameController.Instance.gridManager;
+                    if (gridManager.isMCType){
+                        if (this.collectedCell.Count > 0)
+                        {
+                            var latestCell = this.collectedCell[this.collectedCell.Count - 1];
+                            latestCell.SetTextStatus(true);
+                            this.collectedCell.RemoveAt(this.collectedCell.Count - 1);
+                        }
+                    }
                     this.setAnswer(cell.content.text);
                     this.collectedCell.Add(cell);
                     cell.SetTextStatus(false);

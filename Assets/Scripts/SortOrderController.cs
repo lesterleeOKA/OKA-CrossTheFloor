@@ -12,15 +12,14 @@ public class SortOrderController : MonoBehaviour
             Instance = this;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void startMovingObjects()
     {
-        
+        foreach(var road in roads)
+        {
+            if(road != null && road.movingItem != null) {
+                road.movingItem.StartNewMovement();
+            }
+        }
     }
 }
