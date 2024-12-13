@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class MovingObject : MonoBehaviour
 {
@@ -42,21 +43,28 @@ public class MovingObject : MonoBehaviour
         }
     }
 
-    public void StartNewMovement()
+    public void StartNewMovement(int roadId=-1)
     {
         if(GameController.Instance.playing) { 
-            if(this.objectImage != null) this.objectImage.texture = this.randomObjectTex;
+            if(this.objectImage != null && roadId > -1)
+            {
+                this.objectImage.texture = this.objectTextures[roadId];
+            }
+            else
+            {
+                this.objectImage.texture = this.randomObjectTex;
+            }
             // Randomize speed
             this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
             this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;
-            float speed = Random.Range(minSpeed, maxSpeed);
+            float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
 
             // Determine the target position
             Vector2 targetPosition = Vector2.zero;
             this.rectTransform.anchoredPosition = new Vector2(this.startPosX, this.rectTransform.anchoredPosition.y);
             targetPosition = new Vector2(-(this.startPosX), this.rectTransform.anchoredPosition.y);
             // Use DOTween to move the car
-            this.currentTween = this.rectTransform.DOAnchorPos(targetPosition, speed).SetEase(Ease.Linear).OnComplete(this.StartNewMovement);
+            this.currentTween = this.rectTransform.DOAnchorPos(targetPosition, speed).SetEase(Ease.Linear).OnComplete(()=> this.StartNewMovement());
         }
         else
         {
@@ -81,7 +89,7 @@ public class MovingObject : MonoBehaviour
         {
             if (this.objectTextures != null && this.objectTextures.Length > 0)
             {
-                int randomId = Random.Range(0, this.objectTextures.Length);
+                int randomId =UnityEngine.Random.Range(0, this.objectTextures.Length);
                 return this.objectTextures[randomId];
             }
             else return null;

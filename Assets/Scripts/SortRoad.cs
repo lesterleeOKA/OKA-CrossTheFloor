@@ -50,19 +50,18 @@ public class SortRoad : MonoBehaviour
         }
     }
 
-    public void startMovingItems()
+    public void startMovingItems(int roadId)
     {
-        if (this.direction == Direction.none) return;
-        StartCoroutine(this.delayNextItem(3f));
+        StartCoroutine(this.delayNextItem(3f, roadId));
     }
 
-    private IEnumerator delayNextItem(float delay = 1f)
+    private IEnumerator delayNextItem(float delay = 1f, int roadId = -1)
     {
         foreach (var movingItem in this.movingItems)
         {
             if (movingItem != null)
             {
-                movingItem.StartNewMovement();
+                movingItem.StartNewMovement(roadId);
                 yield return new WaitForSeconds(delay);
             }
         }

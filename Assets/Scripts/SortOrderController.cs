@@ -15,10 +15,11 @@ public class SortOrderController : MonoBehaviour
 
     public void startMovingObjects()
     {
-        foreach(var road in roads)
+        for(int i=0; i< this.roads.Length; i++)
         {
-            if(road != null) {
-                road.startMovingItems();
+            if (this.roads[i] != null && this.roads[i].direction != SortRoad.Direction.none)
+            {
+                this.roads[i].startMovingItems(i-1);
             }
         }
     }
