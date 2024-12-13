@@ -17,8 +17,8 @@ public class SortOrderController : MonoBehaviour
     {
         foreach(var road in roads)
         {
-            if(road != null && road.movingItem != null) {
-                road.movingItem.StartNewMovement();
+            if(road != null) {
+                road.startMovingItems();
             }
         }
     }
