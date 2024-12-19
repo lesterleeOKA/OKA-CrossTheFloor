@@ -130,6 +130,15 @@ public class GameController : GameBaseController
             string word = QuestionController.Instance.currentQuestion.correctAnswer;
             this.gridManager.UpdateGridWithWord(null, word);
         }
+
+        for (int i = 0; i < this.playerNumber; i++)
+        {
+            if (this.playerControllers[i] != null)
+            {
+                this.playerControllers[i].resetRetryTime();
+                this.playerControllers[i].playerReset();
+            }
+        }
     }
 
    
@@ -170,7 +179,7 @@ public class GameController : GameBaseController
             {
                 var player = this.playerControllers[i];
 
-                if (player.stayTrail == StayTrail.submitPoint)
+                if (player.stayTrail == StayTrail.submitPoint && player.Retry > 0)
                 {
                     int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
 
@@ -193,7 +202,33 @@ public class GameController : GameBaseController
         }
 
 
-        
+        bool isBattleMode = this.playerNumber > 1;
+
+        if (isBattleMode)
+        {
+            bool isNextQuestion = true;
+
+            for (int i = 0; i < this.playerNumber; i++)
+            {
+                if (this.playerControllers[i] == null || !this.playerControllers[i].IsTriggerToNextQuestion)
+                {
+                    isNextQuestion = false;
+                    break;
+                }
+            }
+
+            if (isNextQuestion)
+            {
+                this.UpdateNextQuestion();
+            }
+        }
+        else
+        {
+            if (this.playerControllers[0] != null && this.playerControllers[0].IsTriggerToNextQuestion)
+            {
+                this.UpdateNextQuestion();
+            }
+        }
 
 
     } 

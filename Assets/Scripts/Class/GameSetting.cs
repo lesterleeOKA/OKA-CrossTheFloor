@@ -269,6 +269,7 @@ public class GameSetup : LoadImage
     public InstructionText instructions;
     public float gameTime;
     public float playersMovingSpeed = 3f;
+    public int retry_times = 3;
     [Range(1, 3)]
     public int objectAverageSpeed;
     public bool showFPS = false;

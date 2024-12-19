@@ -18,6 +18,8 @@ TagManager:
   - StartPoints
   - SubmitPoint
   - Trails
+  - P1_Blood
+  - P2_Blood
   layers:
   - Default
   - TransparentFX

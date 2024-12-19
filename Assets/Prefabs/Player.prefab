@@ -102,7 +102,10 @@ MonoBehaviour:
   - {fileID: 0}
   correctedAnswerNumber: 0
   correctAnswerPercentage: 0
+  retry: 0
+  numberOfRetry: 3
   joystick: {fileID: 0}
+  bloodController: {fileID: 0}
   scoring:
     usingDeductLogic: 0
     bonnus: 1
@@ -113,6 +116,7 @@ MonoBehaviour:
     answeredEffectTxt: {fileID: 0}
     scoringAnimator: {fileID: 0}
   answer: 
+  IsTriggerNextQuestion: 0
   IsCheckedAnswer: 0
   answerBoxCg: {fileID: 5342726528185133642}
   answerBoxFrame: {fileID: 0}
@@ -122,6 +126,9 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   characterOrder: 11
   collectedCell: []
+  highestRoad: {fileID: 0}
+  stayTrail: 0
+  countGetAnswerAtStartPoints: 2
 --- !u!223 &3037035484437151027
 Canvas:
   m_ObjectHideFlags: 0
@@ -194,8 +201,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -30}
-  m_Size: {x: 106.48544, y: 106.48544}
+  m_Offset: {x: 0, y: -22.355446}
+  m_Size: {x: 106.48544, y: 121.77455}
   m_Direction: 0
 --- !u!114 &4424651920430363356
 MonoBehaviour:

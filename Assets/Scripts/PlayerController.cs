@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class PlayerController : UserData
 {
     public FixedJoystick joystick;
+    public BloodController bloodController;
     public Scoring scoring;
     public string answer = string.Empty;
+    public bool IsCorrect = false;
+    public bool IsTriggerToNextQuestion = false;
     public bool IsCheckedAnswer = false;
     public CanvasGroup answerBoxCg;
     public Image answerBoxFrame;
@@ -31,6 +34,7 @@ public class PlayerController : UserData
 
     public void Init(CharacterSet characterSet = null, Sprite[] defaultAnswerBoxes = null)
     {
+        this.updateRetryTimes(false);
         float posX = UnityEngine.Random.Range(-800f, 800f);
         float posY = UnityEngine.Random.Range(-550f, -700f);
         this.startPosition = new Vector3(posX, posY);
@@ -51,6 +55,11 @@ public class PlayerController : UserData
             this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
         }
 
+        if (this.bloodController == null)
+        {
+            this.bloodController = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "_Blood").GetComponent<BloodController>();
+        }
+
         if (this.PlayerIcons[0] == null)
         {
             this.PlayerIcons[0] = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "_Icon").GetComponent<PlayerIcon>();
@@ -69,6 +78,27 @@ public class PlayerController : UserData
         this.scoring.init();
     }
 
+    void updateRetryTimes(bool deduct = false)
+    {
+        if (deduct)
+        {
+            if (this.Retry > 0)
+            {
+                this.Retry--;
+            }
+
+            if (this.bloodController != null)
+            {
+                this.bloodController.setBloods(false);
+            }
+        }
+        else
+        {
+            this.NumberOfRetry = LoaderConfig.Instance.gameSetup.retry_times;
+            this.Retry = this.NumberOfRetry;
+        }
+    }
+
     public void updatePlayerIcon(bool _status = false, string _playerName = "", Sprite _icon = null, Color32 _color = default)
     {
         for (int i = 0; i < this.PlayerIcons.Length; i++)
@@ -77,7 +107,7 @@ public class PlayerController : UserData
             {
                 this.PlayerColor = _color;
                 this.PlayerIcons[i].playerColor = _color;
-                this.joystick.handle.GetComponent<Image>().color = _color;
+                //this.joystick.handle.GetComponent<Image>().color = _color;
                 this.PlayerIcons[i].SetStatus(_status, _playerName, _icon);
             }
         }
@@ -167,6 +197,13 @@ public class PlayerController : UserData
         }
     }
 
+    public void resetRetryTime()
+    {
+        this.updateRetryTimes(false);
+        this.bloodController.setBloods(true);
+        this.IsTriggerToNextQuestion = false;
+    }
+
     public IEnumerator showAnswerResult(bool correct, Action onCompleted = null)
     {
         float delay = 2f;
@@ -177,23 +214,29 @@ public class PlayerController : UserData
             AudioController.Instance?.PlayAudio(1);
             yield return new WaitForSeconds(delay);
             GameController.Instance?.setGetScorePopup(false);
+            GameController.Instance?.UpdateNextQuestion();
         }
         else
         {
             GameController.Instance?.setWrongPopup(true);
             AudioController.Instance?.PlayAudio(2);
+            this.updateRetryTimes(true);
             yield return new WaitForSeconds(delay);
             GameController.Instance?.setWrongPopup(false);
+            if (this.Retry <= 0)
+            {
+                this.IsTriggerToNextQuestion = true;
+            }
         }
         this.scoring.correct = false;
-        GameController.Instance?.UpdateNextQuestion();
-        //this.playerReset();
+
         onCompleted?.Invoke();
     }
 
     public void characterReset()
     {
-        if(this.collectedCell.Count > 0) {
+        if(this.stayTrail == StayTrail.submitPoint)
+        {
             this.stayTrail = StayTrail.startPoints;
             float posX = UnityEngine.Random.Range(-800f, 800f);
             float posY = UnityEngine.Random.Range(-550f, -700f);
@@ -206,6 +249,7 @@ public class PlayerController : UserData
 
     public void playerReset()
     {
+        this.deductAnswer();
         this.setAnswer("");
         this.characterReset();
         this.IsCheckedAnswer = false;
@@ -224,7 +268,7 @@ public class PlayerController : UserData
                 direction.Normalize();
             }
             this.speed = LoaderConfig.Instance.gameSetup.playersMovingSpeed;
-            Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.fixedDeltaTime;
+            Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.deltaTime;
             newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
             newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
 
@@ -234,7 +278,7 @@ public class PlayerController : UserData
         }
         else
         {
-            this.characterTransform.localPosition = new Vector2(this.characterTransform.localPosition.x, 340f);
+            this.characterTransform.localPosition = new Vector2(this.characterTransform.localPosition.x, 220f);
         }
 
         if (direction.magnitude > 0.1f)
@@ -386,7 +430,7 @@ public class PlayerController : UserData
             var cell = other.GetComponent<Cell>();
             if (cell != null)
             {
-                if (cell.isSelected)
+                if (cell.isSelected && this.Retry > 0)
                 {
                     LogController.Instance.debug("Player has entered the trigger!" + other.name);
                     AudioController.Instance?.PlayAudio(9);
