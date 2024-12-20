@@ -31,9 +31,11 @@ public class PlayerController : UserData
     public SortRoad highestRoad = null;
     public StayTrail stayTrail = StayTrail.startPoints;
     public float countGetAnswerAtStartPoints = 2f;
+    private float countAtStartPoints = 0f;
 
     public void Init(CharacterSet characterSet = null, Sprite[] defaultAnswerBoxes = null)
     {
+        this.countAtStartPoints = this.countGetAnswerAtStartPoints;
         this.updateRetryTimes(false);
         float posX = UnityEngine.Random.Range(-800f, 800f);
         float posY = UnityEngine.Random.Range(-550f, -700f);
@@ -134,7 +136,7 @@ public class PlayerController : UserData
             var lowerQIDAns = currentQuestion.correctAnswer.ToLower();
             int resultScore = this.scoring.score(this.answer, currentScore, lowerQIDAns, eachQAScore);
             this.Score = resultScore;
-
+            this.IsCorrect = this.scoring.correct;
             StartCoroutine(this.showAnswerResult(this.scoring.correct,()=>
             {
                 if (this.UserId == 0 && loader != null && loader.apiManager.IsLogined) // For first player
@@ -253,6 +255,7 @@ public class PlayerController : UserData
         this.setAnswer("");
         this.characterReset();
         this.IsCheckedAnswer = false;
+        this.IsCorrect = false;
     }
 
     public void Update()
@@ -263,6 +266,27 @@ public class PlayerController : UserData
         if (this.characterCanvas.sortingOrder != 1)
         {
             direction = new Vector2(this.joystick.Horizontal, this.joystick.Vertical);
+
+            if(this.UserId == 0) // only player one can use
+            {
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    direction.y = 1;
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    direction.y = -1;
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    direction.x = -1;
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    direction.x = 1;
+                }
+            }
+            
             if (direction.magnitude > 1)
             {
                 direction.Normalize();
@@ -373,19 +397,19 @@ public class PlayerController : UserData
     public void autoDeductAnswer()
     {
         if(this.collectedCell.Count > 0) {
-            if (this.countGetAnswerAtStartPoints > 0f)
+            if (this.countAtStartPoints > 0f)
             {
-                this.countGetAnswerAtStartPoints -= Time.deltaTime;
+                this.countAtStartPoints -= Time.deltaTime;
             }
             else
             {
                 this.deductAnswer();
-                this.countGetAnswerAtStartPoints = 2f;
+                this.countAtStartPoints = this.countGetAnswerAtStartPoints;
             }
         }
         else
         {
-            this.countGetAnswerAtStartPoints = 2f;
+            this.countAtStartPoints = this.countGetAnswerAtStartPoints;
         }
     }
 

@@ -173,34 +173,37 @@ public class GameController : GameBaseController
             }  
         }
 
+       // bool anyPlayerReachToSubmitPoint = false;
+
         for (int i = 0; i < this.playerNumber; i++)
         {
             if (this.playerControllers[i] != null)
             {
                 var player = this.playerControllers[i];
-
-                if (player.stayTrail == StayTrail.submitPoint && player.Retry > 0)
+                switch (player.stayTrail)
                 {
-                    int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
-
-                    this.playerControllers[i].checkAnswer(currentTime, ()=>
-                    {
-                        for (int i = 0; i < this.playerNumber; i++)
+                    case StayTrail.submitPoint:
+                        if (player.Retry > 0 && !this.showingPopup)
                         {
-                            if (this.playerControllers[i] != null)
+                            int currentTime = Mathf.FloorToInt(((this.gameTimer.gameDuration - this.gameTimer.currentTime) / this.gameTimer.gameDuration) * 100);
+                            this.playerControllers[i].checkAnswer(currentTime, () =>
                             {
-                                this.playerControllers[i].playerReset();
-                            }
+                                for (int i = 0; i < this.playerNumber; i++)
+                                {
+                                    if (this.playerControllers[i] != null)
+                                    {
+                                        this.playerControllers[i].playerReset();
+                                    }
+                                }
+                            });
                         }
-                    });
-                }
-                else if(player.stayTrail == StayTrail.startPoints)
-                {
-                    player.autoDeductAnswer();
+                        break;
+                    case StayTrail.startPoints:
+                        player.autoDeductAnswer();
+                        break;
                 }
             }
         }
-
 
         bool isBattleMode = this.playerNumber > 1;
 

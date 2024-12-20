@@ -7,7 +7,7 @@ public class Cell : MonoBehaviour
 {
     public int playerId = -1;
     public TextMeshProUGUI content;
-    private Image cellImage = null;
+    private CanvasGroup cellImage = null;
     public Sprite[] cellSprites;
     public Color32 defaultColor = Color.black;
     public Color32 selectedColor = Color.white;
@@ -19,10 +19,10 @@ public class Cell : MonoBehaviour
     {
         if(gridSprite != null) this.cellSprites[0] = gridSprite;
         if (this.cellImage == null) 
-            this.cellImage = this.GetComponent<Image>();
+            this.cellImage = this.GetComponent<CanvasGroup>();
 
-        this.SetButtonColor(_color);
-        this.cellImage.sprite = this.cellSprites[0];
+        //this.SetButtonColor(_color);
+        //this.cellImage.sprite = this.cellSprites[0];
 
         if (this.content != null) {
             this.SetTextStatus(true);
@@ -30,25 +30,30 @@ public class Cell : MonoBehaviour
             this.content.color = this.defaultColor;
         }
         this.isSelected = !string.IsNullOrEmpty(letter) ? true : false;
-        this.setCellStatus(false);
+
+        if (string.IsNullOrEmpty(letter))
+        {
+            this.setCellStatus(false);
+        }
+        else
+        {
+            this.setCellStatus(true);
+        }
     }
 
     public void SetTextStatus(bool show, float duration=0.5f)
     {
-        if (this.content != null)
-        {
-            this.content.transform.DOScale(show ? 1f : 0f, duration).SetEase(Ease.InOutSine);
-            this.isSelected = show? true : false;
-        }
+        this.transform.DOScale(show ? 1f : 0f, duration).SetEase(Ease.InOutSine);
+        this.isSelected = show ? true : false;
     }
 
-    public void SetButtonColor(Color _color = default)
+   /* public void SetButtonColor(Color _color = default)
     {
         if (_color != default(Color))
             this.cellImage.color = _color;
         else
             this.cellImage.color = Color.white;
-    }
+    }*/
 
     public void SetTextColor(Color _color = default)
     {
@@ -65,7 +70,7 @@ public class Cell : MonoBehaviour
     {
         if(this.cellImage != null)
         {
-            this.cellImage.enabled = show;
+            this.cellImage.alpha = show? 1f:0f;
         }
     }
 

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 9045958327927874906}
   - component: {fileID: 8551515074574798589}
   - component: {fileID: 4551904555221406810}
+  - component: {fileID: 3288388897647592397}
+  - component: {fileID: 2879348916738247934}
   m_Layer: 5
   m_Name: WordCell
   m_TagString: Word
@@ -39,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 150}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2794233519007004920
 CanvasRenderer:
@@ -62,14 +64,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 15, y: 15, z: 15, w: 15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8fe791b4c479f454e999ed92c82e5e58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 450f96f6ccedefb4c965588c4ed4f0d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -94,11 +96,11 @@ MonoBehaviour:
   playerId: -1
   content: {fileID: 1969713058206204159}
   cellSprites:
-  - {fileID: 21300000, guid: 8fe791b4c479f454e999ed92c82e5e58, type: 3}
-  - {fileID: 21300000, guid: d1e4b9bebed007049a3fa99670a5069b, type: 3}
+  - {fileID: 21300000, guid: 450f96f6ccedefb4c965588c4ed4f0d7, type: 3}
+  - {fileID: 21300000, guid: 450f96f6ccedefb4c965588c4ed4f0d7, type: 3}
   defaultColor:
     serializedVersion: 2
-    rgba: 4294966272
+    rgba: 4280307842
   selectedColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -177,6 +179,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &3288388897647592397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728923318765693052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 3
+--- !u!225 &2879348916738247934
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728923318765693052}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8157713828536734716
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +279,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294966272
-  m_fontColor: {r: 0, g: 0.9892149, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -269,12 +297,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
+  m_fontSize: 68.05
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 35
-  m_fontSizeMax: 70
+  m_fontSizeMax: 100
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

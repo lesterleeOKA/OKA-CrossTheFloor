@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1545523807557314333}
   - component: {fileID: 4424651920430363356}
   - component: {fileID: 6315677372872579100}
+  - component: {fileID: 2219311859573379511}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -116,7 +117,8 @@ MonoBehaviour:
     answeredEffectTxt: {fileID: 0}
     scoringAnimator: {fileID: 0}
   answer: 
-  IsTriggerNextQuestion: 0
+  IsCorrect: 0
+  IsTriggerToNextQuestion: 0
   IsCheckedAnswer: 0
   answerBoxCg: {fileID: 5342726528185133642}
   answerBoxFrame: {fileID: 0}
@@ -128,7 +130,7 @@ MonoBehaviour:
   collectedCell: []
   highestRoad: {fileID: 0}
   stayTrail: 0
-  countGetAnswerAtStartPoints: 2
+  countGetAnswerAtStartPoints: 10
 --- !u!223 &3037035484437151027
 Canvas:
   m_ObjectHideFlags: 0
@@ -238,6 +240,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 0.5506179
+--- !u!114 &2219311859573379511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181589302056486099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab534fbe97b16a840bbdd8da8ec1e3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.5}
+  shadowDistance: {x: 10, y: -1}
+  m_UseGraphicAlpha: 1
+  iterations: 5
+  shadowSpread: {x: 10, y: 1}
 --- !u!1 &7185572514255955137
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,8 +324,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: efef8b91b300fa84f9a50e1ac422f2d8, type: 2}
-  m_sharedMaterial: {fileID: 985774332121155581, guid: efef8b91b300fa84f9a50e1ac422f2d8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0f356648a8cd19448a4d9b5c73abeb68, type: 2}
+  m_sharedMaterial: {fileID: 985774332121155581, guid: 0f356648a8cd19448a4d9b5c73abeb68, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -384,6 +403,7 @@ GameObject:
   - component: {fileID: 3858758876726987028}
   - component: {fileID: 3706777486467429637}
   - component: {fileID: 5342726528185133642}
+  - component: {fileID: 3466214172836952964}
   m_Layer: 5
   m_Name: Answer
   m_TagString: Untagged
@@ -439,7 +459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 52b1f552776a33848bb67942b7ea878d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 450f96f6ccedefb4c965588c4ed4f0d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -461,6 +481,23 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &3466214172836952964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274483999346766873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab534fbe97b16a840bbdd8da8ec1e3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.5}
+  shadowDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
+  iterations: 5
+  shadowSpread: {x: 5, y: 5}
 --- !u!1001 &5118370531980603452
 PrefabInstance:
   m_ObjectHideFlags: 0
