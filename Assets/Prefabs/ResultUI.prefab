@@ -584,7 +584,10 @@ MonoBehaviour:
   CountFPS: 30
   Duration: 2
   NumberFormat: N0
+  Unit: 
   scoringEffect: {fileID: 0}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  isAnimatedColor: 1
 --- !u!1 &1942132174873846644
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +600,7 @@ GameObject:
   - component: {fileID: 4216150380667088777}
   - component: {fileID: 1031422727965296244}
   - component: {fileID: 954716494896797137}
-  - component: {fileID: 1123463875357949585}
+  - component: {fileID: 8411061315890161765}
   m_Layer: 5
   m_Name: RetryBtn
   m_TagString: Untagged
@@ -718,7 +721,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1123463875357949585
+--- !u!114 &8411061315890161765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -806,7 +809,7 @@ MonoBehaviour:
   autoPlay: 1
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: -217, y: -290, z: 0}
+  endValueV3: {x: -217, y: -280, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -2184,7 +2187,10 @@ MonoBehaviour:
   CountFPS: 30
   Duration: 2
   NumberFormat: N0
+  Unit: 
   scoringEffect: {fileID: 0}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  isAnimatedColor: 1
 --- !u!1 &4055573773777796252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3174,7 +3180,10 @@ MonoBehaviour:
   CountFPS: 30
   Duration: 2
   NumberFormat: N0
+  Unit: 
   scoringEffect: {fileID: 0}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  isAnimatedColor: 1
 --- !u!1 &5412996830018927169
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,7 +3719,10 @@ MonoBehaviour:
   CountFPS: 30
   Duration: 2
   NumberFormat: N0
+  Unit: 
   scoringEffect: {fileID: 0}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  isAnimatedColor: 1
 --- !u!1 &6261288149949226958
 GameObject:
   m_ObjectHideFlags: 0
