@@ -94,7 +94,10 @@ public class GridManager
     {
         foreach (var cell in cells)
         {
-            cell.setCellStatus(status);
+            if (!cell.isSelected)
+            {
+                cell.setCellStatus(status);
+            }
         }
     }
 

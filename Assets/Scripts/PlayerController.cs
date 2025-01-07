@@ -37,8 +37,8 @@ public class PlayerController : UserData
     {
         this.countAtStartPoints = this.countGetAnswerAtStartPoints;
         this.updateRetryTimes(false);
-        float posX = UnityEngine.Random.Range(-800f, 800f);
-        float posY = UnityEngine.Random.Range(-550f, -700f);
+        float posX = UnityEngine.Random.Range(characterSet.positionRangeX.x, characterSet.positionRangeX.y);  //-800f, 800f
+        float posY = UnityEngine.Random.Range(characterSet.positionRangeY.x, characterSet.positionRangeY.y);  //-550f, -700f
         this.startPosition = new Vector3(posX, posY);
         this.characterTransform = this.transform;
         this.characterTransform.localPosition = this.startPosition;
@@ -240,8 +240,8 @@ public class PlayerController : UserData
         if(this.stayTrail == StayTrail.submitPoint)
         {
             this.stayTrail = StayTrail.startPoints;
-            float posX = UnityEngine.Random.Range(-800f, 800f);
-            float posY = UnityEngine.Random.Range(-550f, -700f);
+            float posX = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeX.x,      this.characterAnimation.characterSet.positionRangeX.y);  //-800f, 800f
+            float posY = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeY.x, this.characterAnimation.characterSet.positionRangeY.y);  //-550f, -700f
             this.startPosition = new Vector3(posX, posY);
             this.characterCanvas.sortingOrder = this.characterOrder;
             this.characterTransform.localPosition = this.startPosition;
