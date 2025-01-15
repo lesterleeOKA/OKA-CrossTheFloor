@@ -12,7 +12,7 @@ public class GameController : GameBaseController
     public Color[] playersColor;
     public Sprite[] defaultAnswerBox;
     public List<PlayerController> playerControllers = new List<PlayerController>();
-    private bool showCells = false;
+    public bool showCells = false;
 
     protected override void Awake()
     {

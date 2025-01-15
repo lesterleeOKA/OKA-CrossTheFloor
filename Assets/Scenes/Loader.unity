@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -415,7 +415,7 @@ MonoBehaviour:
     gameBackground: {fileID: 0}
     gamePreview: {fileID: 0}
     instructions: {fileID: 0}
-    gameTime: 0
+    gameTime: 9999
     playersMovingSpeed: 3
     retry_times: 3
     objectAverageSpeed: 2
@@ -552,8 +552,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fba6d0d630d404f42a55768033d81cbd, type: 3}
   - {fileID: 8300000, guid: 7117775e1f47800499aecb9b577cd50f, type: 3}
   - {fileID: 8300000, guid: fe346f0db758e664db76bc836685bc3e, type: 3}
-  - {fileID: 8300000, guid: 55a82ca1cd22f32418150b946e980a2a, type: 3}
-  - {fileID: 8300000, guid: 8b3b15539bb68784dae9b442d7ebe2c2, type: 3}
+  - {fileID: 8300000, guid: 814d4e15444fde041bcecded49803a88, type: 3}
+  - {fileID: 8300000, guid: 66941028f7e2c0543ba0fe7bc7156a40, type: 3}
   bgmAudioSource: {fileID: 359921112}
   audioStatus: 0
 --- !u!82 &734659901

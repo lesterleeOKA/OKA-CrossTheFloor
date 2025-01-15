@@ -38,15 +38,6 @@ public class GridManager
         {
             for (int j = 0; j < this.gridColumn; j++)
             {
-                this.availablePositions.Add(new Vector2Int(i, j));
-            }
-        }
-        System.Random random = new System.Random();
-        this.availablePositions = this.availablePositions.OrderBy(x => random.Next()).ToList();
-        for (int i = 0; i < this.gridRow; i++)
-        {
-            for (int j = 0; j < this.gridColumn; j++)
-            {
                 GameObject cellObject = GameObject.Instantiate(cellPrefab, this.parent != null ? this.parent : null);
                 cellObject.name = "Cell_" + i + "_" + j;
                 Cell cell = cellObject.GetComponent<Cell>();
@@ -54,6 +45,7 @@ public class GridManager
                 cell.row = i;
                 cell.col = j;
                 this.cells[i, j] = cell;
+                this.availablePositions.Add(new Vector2Int(i, j));
             }
         }
 
@@ -64,8 +56,7 @@ public class GridManager
         for (int i=0; i < this.showCellIdList.Count; i++)
         {
             Vector2Int position =  this.availablePositions[this.showCellIdList[i]];
-            this.cells[position.x, position.y].SetTextContent(this.isMCType ? multipleWords[i]: letters[i].ToString(),                                                     default, 
-                                                              cellSprite);
+            this.cells[position.x, position.y].SetTextContent(this.isMCType ? multipleWords[i]: letters[i].ToString(),                            default, cellSprite);
         }
         
         return cells;
@@ -73,7 +64,25 @@ public class GridManager
 
     public List<int> GenerateUniqueRandomIntegers(int count, int minValue, int maxValue)
     {
-        HashSet<int> uniqueIntegers = new HashSet<int>(); System.Random random = new System.Random(); while (uniqueIntegers.Count < count) { int randomNumber = random.Next(minValue, maxValue); uniqueIntegers.Add(randomNumber); }
+        HashSet<int> uniqueIntegers = new HashSet<int>(); 
+        System.Random random = new System.Random(); 
+        while (uniqueIntegers.Count < count) { 
+            int randomNumber = random.Next(minValue, maxValue);
+            bool isValid = true;
+
+            if (uniqueIntegers.Contains(randomNumber - 1) || uniqueIntegers.Contains(randomNumber + 1) ||
+                uniqueIntegers.Contains(randomNumber - this.gridRow) || uniqueIntegers.Contains(randomNumber + this.gridRow) ||
+                uniqueIntegers.Contains(randomNumber - this.gridRow - 1) || uniqueIntegers.Contains(randomNumber - this.gridRow + 1) ||
+                uniqueIntegers.Contains(randomNumber + this.gridRow - 1) || uniqueIntegers.Contains(randomNumber + this.gridRow + 1))
+            {
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                uniqueIntegers.Add(randomNumber);
+            }
+        }
         return new List<int>(uniqueIntegers);
     }
 
@@ -116,8 +125,8 @@ public class GridManager
             this.isMCType = false;
         }
 
-        System.Random random = new System.Random();
-        this.availablePositions = this.availablePositions.OrderBy(x => random.Next()).ToList();
+        //System.Random random = new System.Random();
+        //this.availablePositions = this.availablePositions.OrderBy(x => random.Next()).ToList();
 
         for (int i = 0; i < this.gridRow; i++)
         {

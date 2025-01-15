@@ -107,6 +107,8 @@ MonoBehaviour:
   row: 0
   col: 0
   isSelected: 0
+  isPlayerStayed: 0
+  cellId: -1
 --- !u!61 &8551515074574798589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 125, y: 135}
+  m_Size: {x: 180, y: 80}
   m_EdgeRadius: 0
 --- !u!50 &4551904555221406810
 Rigidbody2D:
@@ -201,7 +203,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5728923318765693052}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

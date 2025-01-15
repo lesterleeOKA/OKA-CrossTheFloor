@@ -32,11 +32,19 @@ public class PlayerController : UserData
     public StayTrail stayTrail = StayTrail.startPoints;
     public float countGetAnswerAtStartPoints = 2f;
     private float countAtStartPoints = 0f;
+    public CanvasGroup bornParticle;
+    public GameObject playerAppearEffect;
 
     public void Init(CharacterSet characterSet = null, Sprite[] defaultAnswerBoxes = null)
     {
+        SetUI.Set(this.bornParticle, true, 1f, 0f, ()=>
+        {
+            SetUI.Set(this.bornParticle, false, 0.5f, 0f, ()=>
+            {
+                this.playerAppearEffect.SetActive(false);
+            });
+        });
         this.countAtStartPoints = this.countGetAnswerAtStartPoints;
-        this.updateRetryTimes(false);
         float posX = UnityEngine.Random.Range(characterSet.positionRangeX.x, characterSet.positionRangeX.y);  //-800f, 800f
         float posY = UnityEngine.Random.Range(characterSet.positionRangeY.x, characterSet.positionRangeY.y);  //-550f, -700f
         this.startPosition = new Vector3(posX, posY);
@@ -78,6 +86,7 @@ public class PlayerController : UserData
         }
 
         this.scoring.init();
+        this.updateRetryTimes(false);
     }
 
     void updateRetryTimes(bool deduct = false)
@@ -98,6 +107,7 @@ public class PlayerController : UserData
         {
             this.NumberOfRetry = LoaderConfig.Instance.gameSetup.retry_times;
             this.Retry = this.NumberOfRetry;
+            SetUI.Set(this.joystick.GetComponent<CanvasGroup>(), true);
         }
     }
 
@@ -227,6 +237,7 @@ public class PlayerController : UserData
             GameController.Instance?.setWrongPopup(false);
             if (this.Retry <= 0)
             {
+                SetUI.Set(this.joystick.GetComponent<CanvasGroup>(), false, 0f, 0.5f);
                 this.IsTriggerToNextQuestion = true;
             }
         }
@@ -237,20 +248,27 @@ public class PlayerController : UserData
 
     public void characterReset()
     {
-        if(this.stayTrail == StayTrail.submitPoint)
-        {
-            this.stayTrail = StayTrail.startPoints;
-            float posX = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeX.x,      this.characterAnimation.characterSet.positionRangeX.y);  //-800f, 800f
-            float posY = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeY.x, this.characterAnimation.characterSet.positionRangeY.y);  //-550f, -700f
-            this.startPosition = new Vector3(posX, posY);
-            this.characterCanvas.sortingOrder = this.characterOrder;
-            this.characterTransform.localPosition = this.startPosition;
-            this.collectedCell.Clear();
-        }
+        this.stayTrail = StayTrail.startPoints;
+        float posX = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeX.x, this.characterAnimation.characterSet.positionRangeX.y);  //-800f, 800f
+        float posY = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeY.x, this.characterAnimation.characterSet.positionRangeY.y);  //-550f, -700f
+        this.startPosition = new Vector3(posX, posY);
+        this.characterCanvas.sortingOrder = this.characterOrder;
+        this.characterTransform.localPosition = this.startPosition;
+        this.collectedCell.Clear();
     }
 
     public void playerReset()
     {
+        if (this.playerAppearEffect != null) this.playerAppearEffect.SetActive(true);
+        SetUI.Set(this.bornParticle, true, 1f, 0f, () =>
+        {
+            SetUI.Set(this.bornParticle, false, 0.5f, 0f, () =>
+            {
+                this.playerAppearEffect.SetActive(false);
+            });
+        });
+        this.characterAnimation.setIdling();
+        this.isWalking = false;
         this.deductAnswer();
         this.setAnswer("");
         this.characterReset();
@@ -260,7 +278,7 @@ public class PlayerController : UserData
 
     public void Update()
     {
-        if(this.joystick == null) return;
+        if(this.joystick == null || this.playerAppearEffect.activeInHierarchy) return;
         Vector2 direction = Vector2.zero;
 
         if (this.characterCanvas.sortingOrder != 1)
@@ -454,6 +472,7 @@ public class PlayerController : UserData
             var cell = other.GetComponent<Cell>();
             if (cell != null)
             {
+                cell.setCellEnterColor(true, GameController.Instance.showCells);
                 if (cell.isSelected && this.Retry > 0)
                 {
                     LogController.Instance.debug("Player has entered the trigger!" + other.name);
@@ -480,8 +499,7 @@ public class PlayerController : UserData
             if(this.characterCanvas.sortingOrder != 1)
             {
                 AudioController.Instance?.PlayAudio(8);
-                this.deductAnswer();
-                this.characterTransform.localPosition = this.startPosition;
+                this.playerReset();
             }
         }
     }
@@ -493,6 +511,7 @@ public class PlayerController : UserData
             var cell = other.GetComponent<Cell>();
             if (cell != null)
             {
+                cell.setCellEnterColor(false);
                 if (cell.isSelected)
                 {
                     LogController.Instance.debug("Player has exited the trigger!" + other.name);

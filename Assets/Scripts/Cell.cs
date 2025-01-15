@@ -14,6 +14,8 @@ public class Cell : MonoBehaviour
     public int row;
     public int col;
     public bool isSelected = false;
+    public bool isPlayerStayed = false;
+    public int cellId = -1;
 
     public void SetTextContent(string letter="", Color _color = default, Sprite gridSprite = null)
     {
@@ -71,6 +73,15 @@ public class Cell : MonoBehaviour
         if(this.cellImage != null)
         {
             this.cellImage.alpha = show? 1f:0f;
+        }
+    }
+
+    public void setCellEnterColor(bool stay = false, bool show = false)
+    {
+        if (this.cellImage != null)
+        {
+            this.isPlayerStayed = stay;
+            this.cellImage.GetComponent<Image>().color = show ? Color.yellow : Color.white;
         }
     }
 
