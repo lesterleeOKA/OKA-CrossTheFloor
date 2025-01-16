@@ -248,25 +248,31 @@ public class PlayerController : UserData
 
     public void characterReset()
     {
-        this.stayTrail = StayTrail.startPoints;
-        float posX = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeX.x, this.characterAnimation.characterSet.positionRangeX.y);  //-800f, 800f
-        float posY = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeY.x, this.characterAnimation.characterSet.positionRangeY.y);  //-550f, -700f
-        this.startPosition = new Vector3(posX, posY);
-        this.characterCanvas.sortingOrder = this.characterOrder;
-        this.characterTransform.localPosition = this.startPosition;
-        this.collectedCell.Clear();
+        if (this.stayTrail != StayTrail.startPoints)
+        {
+            this.stayTrail = StayTrail.startPoints;
+            float posX = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeX.x, this.characterAnimation.characterSet.positionRangeX.y);  //-800f, 800f
+            float posY = UnityEngine.Random.Range(this.characterAnimation.characterSet.positionRangeY.x, this.characterAnimation.characterSet.positionRangeY.y);  //-550f, -700f
+            this.startPosition = new Vector3(posX, posY);
+            this.characterCanvas.sortingOrder = this.characterOrder;
+            this.characterTransform.localPosition = this.startPosition;
+            this.collectedCell.Clear();
+        }
     }
 
     public void playerReset()
     {
-        if (this.playerAppearEffect != null) this.playerAppearEffect.SetActive(true);
-        SetUI.Set(this.bornParticle, true, 1f, 0f, () =>
+        if(this.Retry > 0)
         {
-            SetUI.Set(this.bornParticle, false, 0.5f, 0f, () =>
+            if (this.playerAppearEffect != null) this.playerAppearEffect.SetActive(true);
+            SetUI.Set(this.bornParticle, true, 1f, 0f, () =>
             {
-                this.playerAppearEffect.SetActive(false);
+                SetUI.Set(this.bornParticle, false, 0.5f, 0f, () =>
+                {
+                    this.playerAppearEffect.SetActive(false);
+                });
             });
-        });
+        }
         this.characterAnimation.setIdling();
         this.isWalking = false;
         this.deductAnswer();

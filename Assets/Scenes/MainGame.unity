@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2030,6 +2030,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394616716639748559, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: playerIcons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394616716639748559, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: playerIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1805038840}
+    - target: {fileID: 4394616716639748559, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: playerNameBoxes.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2071,20 +2079,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 540
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 266.3883
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231929138759331231, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882271920690222390, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: playerIcons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882271920690222390, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: playerIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1805038841}
     - target: {fileID: 6882271920690222390, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: playerNameBoxes.Array.size
       value: 1
@@ -2119,19 +2135,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 266.3883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891115048027758453, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8899460191781525649, guid: 327f124e2bd7112499ce3ae6029e65c0, type: 3}
       propertyPath: m_IsActive
@@ -5583,6 +5599,28 @@ MonoBehaviour:
   orderLayer: 8
   movingObjectPrefab: {fileID: 0}
   maxMovingItems: 2
+--- !u!114 &1805038840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8384619251964724505, guid: 0017e1a7dfbb96e4eb9744e32abb05b8, type: 3}
+  m_PrefabInstance: {fileID: 1839711102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1805038841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9205811101738698197, guid: 0017e1a7dfbb96e4eb9744e32abb05b8, type: 3}
+  m_PrefabInstance: {fileID: 1839711102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1829657276 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
@@ -6647,22 +6685,26 @@ MonoBehaviour:
   characterSets:
   - name: p1
     playerNumber: 0
-    idlingTexture: {fileID: 2800000, guid: 5c0304ddadda142438d05d327f3abc9d, type: 3}
+    playersColor: {r: 0.25882354, g: 0.7058824, b: 0.88235295, a: 1}
+    defaultIcon: {fileID: 2800000, guid: a2ceee83e00b56b48bb25cb73cbd3ad1, type: 3}
+    idlingTexture: {fileID: 2800000, guid: 600243df46deabb4c802a349e5f1bed5, type: 3}
     walkingAnimationTextures:
-    - {fileID: 2800000, guid: 0ae63f7ed4db040438af252ab9b25d37, type: 3}
-    - {fileID: 2800000, guid: b07eb2d96eaa96143bbd5ff1ca265264, type: 3}
-    - {fileID: 2800000, guid: 4b84c1a7d495d114782214fb35d9438b, type: 3}
-    - {fileID: 2800000, guid: a0f11e9cb806e1a4998a7cd0be7209f9, type: 3}
+    - {fileID: 2800000, guid: 600243df46deabb4c802a349e5f1bed5, type: 3}
+    - {fileID: 2800000, guid: 37ebf9bf9be6b0e4cb87ed6ffe1a5740, type: 3}
+    - {fileID: 2800000, guid: bfa686c4d2350a94b8ec04d844524ed2, type: 3}
+    - {fileID: 2800000, guid: 3a9e62b9be79b01418de9c9483e0aa4c, type: 3}
     positionRangeX: {x: -700, y: -50, z: 0}
     positionRangeY: {x: -550, y: -600, z: 0}
   - name: p2
     playerNumber: 1
-    idlingTexture: {fileID: 2800000, guid: 0619a85b8c0c270479f6deb4720b2ceb, type: 3}
+    playersColor: {r: 0.9647059, g: 0.57254905, b: 0.11764706, a: 1}
+    defaultIcon: {fileID: 2800000, guid: 0586e8e5773dd8848ba38462f2c3fda0, type: 3}
+    idlingTexture: {fileID: 2800000, guid: 5e01ce542bd50ef488ed5a94f20ea85e, type: 3}
     walkingAnimationTextures:
-    - {fileID: 2800000, guid: aefedf3f57e0e544a92223aa5034c665, type: 3}
-    - {fileID: 2800000, guid: e876afa47c16a024b9a9e1fbfcab15f1, type: 3}
-    - {fileID: 2800000, guid: 5ceee2d5093645643a8ee693984d2f9f, type: 3}
-    - {fileID: 2800000, guid: 80d3e34a068d17b4f99efe6c2900a218, type: 3}
+    - {fileID: 2800000, guid: 5e01ce542bd50ef488ed5a94f20ea85e, type: 3}
+    - {fileID: 2800000, guid: a9387fca289ef154aa13044084ea5576, type: 3}
+    - {fileID: 2800000, guid: 7b18df3facbce6946a7cf987d4149887, type: 3}
+    - {fileID: 2800000, guid: abec21c1721da054588a3991f5649f2a, type: 3}
     positionRangeX: {x: 50, y: 700, z: 0}
     positionRangeY: {x: -550, y: -600, z: 0}
   gridManager:
@@ -6676,11 +6718,9 @@ MonoBehaviour:
     isMCType: 0
   playerPrefab: {fileID: 1181589302056486099, guid: ae2bf29d6e4aac3479d40ce0e41c0ae3, type: 3}
   parent: {fileID: 739772688}
-  playersColor:
-  - {r: 0.25882354, g: 0.7058824, b: 0.88235295, a: 1}
-  - {r: 0.96470594, g: 0.57254905, b: 0.11764707, a: 1}
   defaultAnswerBox: []
   playerControllers: []
+  showCells: 0
 --- !u!4 &2027992706
 Transform:
   m_ObjectHideFlags: 0
@@ -6930,7 +6970,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2083106398}
   - component: {fileID: 2083106397}
-  - component: {fileID: 2083106396}
   m_Layer: 0
   m_Name: BornParticleCamera
   m_TagString: Untagged
@@ -6938,14 +6977,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2083106396
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083106395}
-  m_Enabled: 1
 --- !u!20 &2083106397
 Camera:
   m_ObjectHideFlags: 0

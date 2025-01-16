@@ -76,7 +76,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5c0304ddadda142438d05d327f3abc9d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 600243df46deabb4c802a349e5f1bed5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -225,6 +225,7 @@ MonoBehaviour:
   characterSet:
     name: 
     playerNumber: 0
+    playersColor: {r: 0, g: 0, b: 0, a: 0}
     idlingTexture: {fileID: 0}
     walkingAnimationTextures: []
     positionRangeX: {x: 0, y: 0, z: 0}

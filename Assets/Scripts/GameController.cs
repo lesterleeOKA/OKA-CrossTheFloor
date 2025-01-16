@@ -9,7 +9,6 @@ public class GameController : GameBaseController
     public Cell[,] grid;
     public GameObject playerPrefab;
     public Transform parent;
-    public Color[] playersColor;
     public Sprite[] defaultAnswerBox;
     public List<PlayerController> playerControllers = new List<PlayerController>();
     public bool showCells = false;
@@ -63,11 +62,12 @@ public class GameController : GameBaseController
                     var _playerName = LoaderConfig.Instance?.apiManager.loginName;
                     var icon = SetUI.ConvertTextureToSprite(LoaderConfig.Instance.apiManager.peopleIcon as Texture2D);
                     this.playerControllers[i].UserName = _playerName;
-                    this.playerControllers[i].updatePlayerIcon(true, _playerName, icon, this.playersColor[i]);
+                    this.playerControllers[i].updatePlayerIcon(true, _playerName, icon, this.characterSets[i].playersColor);
                 }
                 else
                 {
-                    this.playerControllers[i].updatePlayerIcon(true, null, null, this.playersColor[i]);
+                    var icon = this.characterSets[i].defaultIcon != null ? SetUI.ConvertTextureToSprite(this.characterSets[i].defaultIcon as Texture2D) : null;
+                    this.playerControllers[i].updatePlayerIcon(true, null, icon, this.characterSets[i].playersColor);
                 }
             }
             else
