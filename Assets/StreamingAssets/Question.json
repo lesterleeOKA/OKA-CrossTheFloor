@@ -1,508 +1,704 @@
 {
   "questions": [
     {
-      "qid": "p1u1-a1",
+      "qid": "p2u2-e1",
       "questionType": "text",
-      "question": "What is the color of apple?",
+      "question": "We can’t___________ at the park.",
       "answers": [
-        "red",
-        "blue",
-        "purple",
-        "black"
+        "eat sandwiches",
+        "litter",
+        "ride bicycle"
       ],
-      "correctAnswer": "red"
+      "correctAnswer": "litter"
     },
     {
-      "qid": "p1u1-a2",
+      "qid": "p2u2-e2",
       "questionType": "text",
-      "question": "What is the color of banana?",
+      "question": "Which of these are not facilities at the park?",
       "answers": [
-        "red",
-        "yellow",
-        "purple",
-        "black"
+        "Slide",
+        "Swing",
+        "Bicycle"
       ],
-      "correctAnswer": "yellow"
+      "correctAnswer": "Bicycle"
     },
     {
-      "qid": "p6u1-c1",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e3",
+      "questionType": "text",
+      "question": "You may get hurt if you _______a tree.",
       "answers": [
-        "Consern",
-        "Concern",
-        "Conxern",
-        "Conncern"
+        "climb",
+        "eat",
+        "drink"
       ],
-      "correctAnswer": "Concern"
+      "correctAnswer": "climb"
     },
     {
-      "qid": "p6u1-c2",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e4",
+      "questionType": "text",
+      "question": "I want to go _________because I want to see the stars and the big moon.",
       "answers": [
-        "Purform",
-        "Perfune",
-        "Parform",
-        "Perform"
+        "swimming",
+        "camping",
+        "dancing"
       ],
-      "correctAnswer": "Perform"
+      "correctAnswer": "camping"
     },
     {
-      "qid": "p6u1-c3",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e5",
+      "questionType": "text",
+      "question": "We are having a _________party at the country park next week!",
       "answers": [
-        "Aed",
-        "Ald",
-        "Aad",
-        "Aid"
+        "scooter",
+        "barbecue",
+        "Frisbee"
       ],
-      "correctAnswer": "Aid"
+      "correctAnswer": "barbecue"
     },
     {
-      "qid": "p6u1-c4",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e6",
+      "questionType": "text",
+      "question": "The man is so disgusting because he ______on the floor.",
       "answers": [
-        "Sponser",
-        "Sponcer",
-        "Sponsar",
-        "Sponsor"
+        "runs",
+        "flies",
+        "spits"
       ],
-      "correctAnswer": "Sponsor"
+      "correctAnswer": "spits"
     },
     {
-      "qid": "p6u1-c5",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e7",
+      "questionType": "text",
+      "question": "My mom loves taking ________ of us to create the precious memories.",
       "answers": [
-        "Prepare",
-        "Preepare",
-        "Prep",
-        "Prepair"
+        "photos",
+        "strawberries",
+        "games"
       ],
-      "correctAnswer": "Prepare"
+      "correctAnswer": "photos"
     },
     {
-      "qid": "p6u1-c6",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e8",
+      "questionType": "text",
+      "question": "Try to catch the ________ when it comes back down!",
       "answers": [
-        "Donate",
-        "Donut",
-        "Donute",
-        "Danube"
+        "Frisbee",
+        "kites",
+        "drink"
       ],
-      "correctAnswer": "Donate"
+      "correctAnswer": "Frisbee"
     },
     {
-      "qid": "p6u1-c7",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e9",
+      "questionType": "text",
+      "question": "Mom, can you push the _______high for me?",
       "answers": [
-        "Volanteer",
-        "Volantis",
-        "Volunteer",
-        "Volume"
+        "slide",
+        "swing",
+        "seesaw"
       ],
-      "correctAnswer": "Volunteer"
+      "correctAnswer": "swing"
     },
     {
-      "qid": "p6u1-c8",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u2-e10",
+      "questionType": "text",
+      "question": "Be careful when you are _______ropes! Don’t hit people!",
       "answers": [
-        "Assist",
-        "Assixt",
-        "Ascist",
-        "Azziz"
+        "playing",
+        "running",
+        "skipping"
       ],
-      "correctAnswer": "Assist"
+      "correctAnswer": "skipping"
     },
     {
-      "qid": "p6u1-c9",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e1",
+      "questionType": "text",
+      "question": "We take a ________ to cross the ocean.",
       "answers": [
-        "Walkathon",
-        "Talkathon",
-        "Speakathon",
-        "Sleepathon"
+        "bus",
+        "ship",
+        "plane"
       ],
-      "correctAnswer": "Walkathon"
+      "correctAnswer": "ship"
     },
     {
-      "qid": "p6u1-c10",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e2",
+      "questionType": "text",
+      "question": "We must _____ ______ and wait for our turn patiently.",
       "answers": [
-        "Gift",
-        "Givt",
-        "Gipht",
-        "Grift"
+        "get on",
+        "line up",
+        "get off"
       ],
-      "correctAnswer": "Gift"
+      "correctAnswer": "line up"
     },
     {
-      "qid": "p6u1-c11",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e3",
+      "questionType": "text",
+      "question": "We should __________ the bus when we arrive at our stop.",
       "answers": [
-        "Charrity",
-        "Chairity",
-        "Charety",
-        "Charity"
+        "get on",
+        "line up",
+        "get off"
       ],
-      "correctAnswer": "Charity"
+      "correctAnswer": "get off"
     },
     {
-      "qid": "p6u1-c12",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e4",
+      "questionType": "text",
+      "question": "We can take a _____ if we are in a hurry.",
       "answers": [
-        "Suppose",
-        "Suport",
-        "Subport",
-        "Support"
+        "taxi",
+        "tram",
+        "bus"
       ],
-      "correctAnswer": "Support"
+      "correctAnswer": "taxi"
     },
     {
-      "qid": "p6u1-c13",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e5",
+      "questionType": "text",
+      "question": "We take a ________ to cross the sky.",
       "answers": [
-        "Reffle",
-        "Roffle",
-        "Raffle",
-        "Riffle"
+        "bus",
+        "ship",
+        "plane"
       ],
-      "correctAnswer": "Raffle"
+      "correctAnswer": "plane"
     },
     {
-      "qid": "p6u1-c14",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e6",
+      "questionType": "text",
+      "question": "We can't stand in a ______ if there are no empty seats.",
       "answers": [
-        "Adipt",
-        "Adoph",
-        "Adorpt",
-        "Adopt"
+        "MTR",
+        "minibus",
+        "bus"
       ],
-      "correctAnswer": "Adopt"
+      "correctAnswer": "minibus"
     },
     {
-      "qid": "p6u1-c15",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e7",
+      "questionType": "text",
+      "question": "We can walk to a place nearby ________ for some exercise.",
       "answers": [
-        "Abandon",
-        "Abanddon",
-        "Abaddon",
-        "Aband"
+        "on foot",
+        "by plane",
+        "by helicopter"
       ],
-      "correctAnswer": "Abandon"
+      "correctAnswer": "on foot"
     },
     {
-      "qid": "p6u1-c16",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e8",
+      "questionType": "text",
+      "question": "_________ can only carry one person at a time.",
       "answers": [
-        "Honeless",
-        "Homeless",
-        "Whomeless",
-        "Homless"
+        "Ferry",
+        "Plane",
+        "Motorbike"
       ],
-      "correctAnswer": "Homeless"
+      "correctAnswer": "Motorbike"
     },
     {
-      "qid": "p6u1-c17",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e9",
+      "questionType": "text",
+      "question": "We should not take the _____ if we don't have much time.",
       "answers": [
-        "Organaize",
-        "Org",
-        "Organize",
-        "Orgenize"
+        "taxi",
+        "tram",
+        "bus"
       ],
-      "correctAnswer": "Organize"
+      "correctAnswer": "tram"
     },
     {
-      "qid": "p6u1-c18",
-      "questionType": "audio",
-      "question": "",
+      "qid": "p2u5-e10",
+      "questionType": "text",
+      "question": "We can also take a _______ from Hong Kong to Macau.",
       "answers": [
-        "Fand",
-        "Faund",
-        "Fiund",
-        "Fund"
+        "helicopter",
+        "plane",
+        "train"
       ],
-      "correctAnswer": "Fund"
+      "correctAnswer": "helicopter"
     },
     {
-      "qid": "p6u1-c19",
-      "questionType": "audio",
-      "question": "",
-      "answers": [
-        "Aelderly",
-        "Alderly",
-        "Ilderly",
-        "Elderly"
-      ],
-      "correctAnswer": "Elderly"
-    },
-    {
-      "qid": "p6u1-c20",
-      "questionType": "audio",
-      "question": "",
-      "answers": [
-        "Colect",
-        "Collect",
-        "Collekt",
-        "Corlect"
-      ],
-      "correctAnswer": "Collect"
-    },
-    {
-      "qid": "p6u6-c1",
+      "qid": "p3Bu2-b1",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "umbrella",
-        "skirt",
-        "cheongsam",
-        "robe"
+        "cap",
+        "captain",
+        "chaplain",
+        "capital"
       ],
-      "correctAnswer": "cheongsam"
+      "correctAnswer": "captain"
     },
     {
-      "qid": "p6u6-c2",
+      "qid": "p3Bu2-b2",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "poncho",
-        "towel",
-        "rug",
-        "handkerchief"
+        "eagle",
+        "lizard",
+        "dragon",
+        "eel"
       ],
-      "correctAnswer": "poncho"
+      "correctAnswer": "dragon"
     },
     {
-      "qid": "p6u6-c3",
+      "qid": "p3Bu2-b3",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "kaiser",
-        "kimono",
-        "komodo",
-        "katana"
+        "elf",
+        "genie",
+        "elk",
+        "hunter"
       ],
-      "correctAnswer": "kimono"
+      "correctAnswer": "elf"
     },
     {
-      "qid": "p6u6-c4",
+      "qid": "p3Bu2-b4",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "skirt",
-        "kilt",
-        "dress",
-        "garter"
+        "fairy",
+        "fairly",
+        "angel",
+        "dwarf"
       ],
-      "correctAnswer": "kilt"
+      "correctAnswer": "fairy"
     },
     {
-      "qid": "p6u6-c5",
+      "qid": "p3Bu2-b5",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "hijab",
-        "headband",
-        "scarf",
-        "hat"
+        "wrestler",
+        "genius",
+        "lamp",
+        "genie"
       ],
-      "correctAnswer": "hijab"
+      "correctAnswer": "genie"
     },
     {
-      "qid": "p6u6-c6",
+      "qid": "p3Bu2-b6",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "V-neck",
-        "tank top",
-        "T-shirt",
-        "changshan"
+        "god",
+        "king",
+        "queen",
+        "kin"
       ],
-      "correctAnswer": "changshan"
+      "correctAnswer": "king"
     },
     {
-      "qid": "p6u6-c7",
+      "qid": "p3Bu2-b7",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "African drum",
-        "American drum",
-        "Asian drum",
-        "Australian drum"
+        "monster",
+        "mobster",
+        "monstar",
+        "munchkin"
       ],
-      "correctAnswer": "African drum"
+      "correctAnswer": "monster"
     },
     {
-      "qid": "p6u6-c8",
+      "qid": "p3Bu2-b8",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "stamper",
-        "simba",
-        "timber",
-        "samba"
+        "sailor",
+        "pilot",
+        "pirate",
+        "private"
       ],
-      "correctAnswer": "samba"
+      "correctAnswer": "pirate"
     },
     {
-      "qid": "p6u6-c9",
+      "qid": "p3Bu2-b9",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "abs dance",
-        "belly dance",
-        "tummy dance",
-        "stomach dance"
+        "prick",
+        "pincer",
+        "princess",
+        "prince"
       ],
-      "correctAnswer": "belly dance"
+      "correctAnswer": "prince"
     },
     {
-      "qid": "p6u6-c10",
+      "qid": "p3Bu2-b10",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "haka",
-        "hark",
-        "hike",
-        "hokum"
+        "maid",
+        "prince",
+        "princess",
+        "pony"
       ],
-      "correctAnswer": "haka"
+      "correctAnswer": "princess"
     },
     {
-      "qid": "p6u6-c11",
+      "qid": "p3Bu2-b11",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "Chinese opera",
-        "Italian opera",
-        "Spanish opera",
-        "Flemish opera"
+        "queen",
+        "king",
+        "quiz",
+        "emperor"
       ],
-      "correctAnswer": "Chinese opera"
+      "correctAnswer": "queen"
     },
     {
-      "qid": "p6u6-c12",
+      "qid": "p3Bu2-b12",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "salsa sauce",
-        "salsa dance",
-        "salsa dip",
-        "salsa chips"
+        "valley",
+        "villain",
+        "villager",
+        "village"
       ],
-      "correctAnswer": "salsa dance"
+      "correctAnswer": "villain"
     },
     {
-      "qid": "p6u6-c13",
+      "qid": "p3Bu2-b13",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "jacuzzi",
-        "gas",
-        "jams",
-        "jazz"
+        "which",
+        "wick",
+        "sorcerer",
+        "witch"
       ],
-      "correctAnswer": "jazz"
+      "correctAnswer": "witch"
     },
     {
-      "qid": "p6u6-c14",
+      "qid": "p3Bu2-b14",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "mochi",
-        "kimchi",
-        "sushi",
-        "sashimi"
+        "wizen",
+        "wizard",
+        "sorceress",
+        "whiz"
       ],
-      "correctAnswer": "kimchi"
+      "correctAnswer": "wizard"
     },
     {
-      "qid": "p6u6-c15",
+      "qid": "p3Bu2-b15",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "arm wrestling",
-        "Greek wrestling",
-        "sumo-wrestling",
-        "WWE wrestling"
+        "ghost",
+        "angel",
+        "zombie",
+        "shadow"
       ],
-      "correctAnswer": "sumo-wrestling"
+      "correctAnswer": "ghost"
     },
     {
-      "qid": "p6u6-c16",
+      "qid": "p3Bu2-b16",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "cruises",
-        "cuisines",
-        "karmas",
-        "corndogs"
+        "rook",
+        "bishop",
+        "knight",
+        "night"
       ],
-      "correctAnswer": "cuisines"
+      "correctAnswer": "knight"
     },
     {
-      "qid": "p6u6-c17",
+      "qid": "p3Bu2-b17",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "languages",
-        "languishes",
-        "lampreys",
-        "lunges"
+        "dwarf",
+        "dwell",
+        "hobbit",
+        "giant"
       ],
-      "correctAnswer": "languages"
+      "correctAnswer": "dwarf"
     },
     {
-      "qid": "p6u6-c18",
+      "qid": "p3Bu2-b18",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "releggings",
-        "relics",
-        "religieuse",
-        "religions"
+        "dwarf",
+        "djinn",
+        "giant",
+        "huge"
       ],
-      "correctAnswer": "religions"
+      "correctAnswer": "djinn"
     },
     {
-      "qid": "p6u6-c19",
+      "qid": "p3Bu2-b19",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "customary",
-        "costumes",
-        "customs",
-        "costs"
+        "murmur",
+        "manatee",
+        "mermaid",
+        "fish person"
       ],
-      "correctAnswer": "costumes"
+      "correctAnswer": "mermaid"
     },
     {
-      "qid": "p6u6-c20",
+      "qid": "p3Bu2-b20",
       "questionType": "picture",
       "question": "",
       "answers": [
-        "transportations",
-        "traditions",
-        "transitions",
-        "trepidations"
+        "allen",
+        "alien",
+        "anyone",
+        "spaceman"
       ],
-      "correctAnswer": "traditions"
+      "correctAnswer": "alien"
+    },
+    {
+      "qid": "p3Bu2-b1",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "cap",
+        "captain",
+        "chaplain",
+        "capital"
+      ],
+      "correctAnswer": "captain"
+    },
+    {
+      "qid": "p3Bu2-b2",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "eagle",
+        "lizard",
+        "dragon",
+        "eel"
+      ],
+      "correctAnswer": "dragon"
+    },
+    {
+      "qid": "p3Bu2-b3",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "elf",
+        "genie",
+        "elk",
+        "hunter"
+      ],
+      "correctAnswer": "elf"
+    },
+    {
+      "qid": "p3Bu2-b4",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "fairy",
+        "fairly",
+        "angel",
+        "dwarf"
+      ],
+      "correctAnswer": "fairy"
+    },
+    {
+      "qid": "p3Bu2-b5",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "wrestler",
+        "genius",
+        "lamp",
+        "genie"
+      ],
+      "correctAnswer": "genie"
+    },
+    {
+      "qid": "p3Bu2-b6",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "god",
+        "king",
+        "queen",
+        "kin"
+      ],
+      "correctAnswer": "king"
+    },
+    {
+      "qid": "p3Bu2-b7",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "monster",
+        "mobster",
+        "monstar",
+        "munchkin"
+      ],
+      "correctAnswer": "monster"
+    },
+    {
+      "qid": "p3Bu2-b8",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "sailor",
+        "pilot",
+        "pirate",
+        "private"
+      ],
+      "correctAnswer": "pirate"
+    },
+    {
+      "qid": "p3Bu2-b9",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "prick",
+        "pincer",
+        "princess",
+        "prince"
+      ],
+      "correctAnswer": "prince"
+    },
+    {
+      "qid": "p3Bu2-b10",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "maid",
+        "prince",
+        "princess",
+        "pony"
+      ],
+      "correctAnswer": "princess"
+    },
+    {
+      "qid": "p3Bu2-b11",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "queen",
+        "king",
+        "quiz",
+        "emperor"
+      ],
+      "correctAnswer": "queen"
+    },
+    {
+      "qid": "p3Bu2-b12",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "valley",
+        "villain",
+        "villager",
+        "village"
+      ],
+      "correctAnswer": "villain"
+    },
+    {
+      "qid": "p3Bu2-b13",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "which",
+        "wick",
+        "sorcerer",
+        "witch"
+      ],
+      "correctAnswer": "witch"
+    },
+    {
+      "qid": "p3Bu2-b14",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "wizen",
+        "wizard",
+        "sorceress",
+        "whiz"
+      ],
+      "correctAnswer": "wizard"
+    },
+    {
+      "qid": "p3Bu2-b15",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "ghost",
+        "angel",
+        "zombie",
+        "shadow"
+      ],
+      "correctAnswer": "ghost"
+    },
+    {
+      "qid": "p3Bu2-b16",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "rook",
+        "bishop",
+        "knight",
+        "night"
+      ],
+      "correctAnswer": "knight"
+    },
+    {
+      "qid": "p3Bu2-b17",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "dwarf",
+        "dwell",
+        "hobbit",
+        "giant"
+      ],
+      "correctAnswer": "dwarf"
+    },
+    {
+      "qid": "p3Bu2-b18",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "dwarf",
+        "djinn",
+        "giant",
+        "huge"
+      ],
+      "correctAnswer": "djinn"
+    },
+    {
+      "qid": "p3Bu2-b19",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "murmur",
+        "manatee",
+        "mermaid",
+        "fish person"
+      ],
+      "correctAnswer": "mermaid"
+    },
+    {
+      "qid": "p3Bu2-b20",
+      "questionType": "picture",
+      "question": "",
+      "answers": [
+        "allen",
+        "alien",
+        "anyone",
+        "spaceman"
+      ],
+      "correctAnswer": "alien"
     }
   ]
 
