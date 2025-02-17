@@ -29,7 +29,7 @@ public class Cell : MonoBehaviour
         if (this.content != null) {
             this.SetTextStatus(true);
             this.content.text = letter;
-            this.content.color = this.defaultColor;
+            //this.content.color = this.defaultColor;
         }
         this.isSelected = !string.IsNullOrEmpty(letter) ? true : false;
 

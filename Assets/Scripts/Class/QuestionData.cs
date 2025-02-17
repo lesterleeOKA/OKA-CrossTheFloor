@@ -156,14 +156,16 @@ public class CurrentQuestion
                     this.questionImage.enabled = true;
                     this.aspecRatioFitter = this.questionImage.GetComponent<AspectRatioFitter>();
                     this.questionImage.texture = qaImage;
-                    var width = this.questionImage.GetComponent<RectTransform>().sizeDelta.x;
+
+                    var parentRectTransform = this.questionImage.transform.parent.GetComponent<RectTransform>();
+                    var parentWidth = parentRectTransform.sizeDelta.x;
                     if (qaImage.width > qaImage.height)
                     {
-                        this.questionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 275f);
+                        this.questionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(parentWidth, 300f);
                     }
                     else
                     {
-                        this.questionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 430f);
+                        this.questionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(parentWidth, 430f);
                     }
                     this.aspecRatioFitter.aspectRatio = (float)qaImage.width / (float)qaImage.height;
                 }

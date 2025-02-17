@@ -226,6 +226,7 @@ MonoBehaviour:
     name: 
     playerNumber: 0
     playersColor: {r: 0, g: 0, b: 0, a: 0}
+    defaultIcon: {fileID: 0}
     idlingTexture: {fileID: 0}
     walkingAnimationTextures: []
     positionRangeX: {x: 0, y: 0, z: 0}
@@ -10139,8 +10140,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
