@@ -140,11 +140,16 @@ public class GameSetting : MonoBehaviour
         {
             this.apiManager.settings.backgroundImageUrl,
             this.apiManager.settings.previewGameImageUrl,
-            this.apiManager.settings.frameImageUrl_P1,
-            this.apiManager.settings.frameImageUrl_P2,
             this.apiManager.settings.grid_image
         };
         imageUrls = imageUrls.Where(url => !string.IsNullOrEmpty(url)).ToList();
+
+        string[] moveItemsImages = this.apiManager.settings.moveItemsImages;
+
+        if (moveItemsImages != null)
+        {
+            imageUrls.AddRange(moveItemsImages.Where(url => !string.IsNullOrEmpty(url)));
+        }
 
         if (imageUrls.Count > 0)
         {
@@ -179,17 +184,17 @@ public class GameSetting : MonoBehaviour
             {
                 this.gameSetup.previewTexture = texture != null ? texture : null;
             }
-            else if (url == this.apiManager.settings.frameImageUrl_P1)
-            {
-                this.gameSetup.frameTexture_p1 = texture != null ? texture : null;
-            }
-            else if (url == this.apiManager.settings.frameImageUrl_P2)
-            {
-                this.gameSetup.frameTexture_p2 = texture != null ? texture : null;
-            }
             else if (url == this.apiManager.settings.grid_image)
             {
                 this.gameSetup.gridTexture = texture != null ? texture : null;
+            }
+            else if (this.apiManager.settings.moveItemsImages.Contains(url))
+            {
+                if (this.gameSetup.movingItemsTextures == null)
+                {
+                    this.gameSetup.movingItemsTextures = new List<Texture>();
+                }
+                this.gameSetup.movingItemsTextures.Add(texture != null ? texture : null);
             }
         }
 
@@ -256,10 +261,8 @@ public class GameSetup : LoadImage
     public Texture bgTexture;
     [Tooltip("Default Game Preview Texture")]
     public Texture previewTexture;
-    [Tooltip("Default P1 Frame Texture")]
-    public Texture frameTexture_p1;
-    [Tooltip("Default P2 Frame Texture")]
-    public Texture frameTexture_p2;
+    [Tooltip("Default Array Textures of moving Items")]
+    public List<Texture> movingItemsTextures = new List<Texture>();
     [Tooltip("Default grid Texture")]
     public Texture gridTexture;
     [Tooltip("Find Tag name of GameBackground in different scene")]

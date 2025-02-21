@@ -198,13 +198,12 @@ public class PlayerController : UserData
                                currentQuestion.correctAnswer,
                                score,
                                currentQAPercent,
-                               onCompleted
+                               null
                                );
                 }
-                else
-                {
-                   onCompleted?.Invoke();
-                }
+            }, ()=>
+            {
+                onCompleted?.Invoke();
             }));
         }
     }
@@ -216,7 +215,7 @@ public class PlayerController : UserData
         this.IsTriggerToNextQuestion = false;
     }
 
-    public IEnumerator showAnswerResult(bool correct, Action onCompleted = null)
+    public IEnumerator showAnswerResult(bool correct, Action onCorrectCompleted = null, Action onFailureCompleted = null)
     {
         float delay = 2f;
         if (correct)
@@ -224,6 +223,7 @@ public class PlayerController : UserData
             LogController.Instance?.debug("Add marks" + this.Score);
             GameController.Instance?.setGetScorePopup(true);
             AudioController.Instance?.PlayAudio(1);
+            onCorrectCompleted?.Invoke();
             yield return new WaitForSeconds(delay);
             GameController.Instance?.setGetScorePopup(false);
             GameController.Instance?.UpdateNextQuestion();
@@ -238,12 +238,12 @@ public class PlayerController : UserData
             if (this.Retry <= 0)
             {
                 SetUI.Set(this.joystick.GetComponent<CanvasGroup>(), false, 0f, 0.5f);
+                onCorrectCompleted?.Invoke();
                 this.IsTriggerToNextQuestion = true;
             }
+            onFailureCompleted?.Invoke();
         }
         this.scoring.correct = false;
-
-        onCompleted?.Invoke();
     }
 
     public void characterReset()

@@ -19,6 +19,11 @@ public class MovingObject : MonoBehaviour
     {
         if (this.objectImage == null) this.objectImage = this.GetComponent<RawImage>();
         if (this.rectTransform == null) this.rectTransform = this.GetComponent<RectTransform>();
+
+        if(LoaderConfig.Instance != null && LoaderConfig.Instance.apiManager.IsLogined && LoaderConfig.Instance.gameSetup.movingItemsTextures.Count > 0)
+        {
+            this.objectTextures = LoaderConfig.Instance.gameSetup.movingItemsTextures.ToArray();
+        }
     }
 
     public enum MovingDirection

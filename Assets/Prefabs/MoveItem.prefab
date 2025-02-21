@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c5e17ad6e8ef7734aba179525f529b75, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7d6b8498c3b8b154a98474087576ca8b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -92,12 +92,12 @@ MonoBehaviour:
   sortLayer: 0
   canvas: {fileID: 3445799907165070192}
   objectTextures:
-  - {fileID: 2800000, guid: c5e17ad6e8ef7734aba179525f529b75, type: 3}
+  - {fileID: 2800000, guid: 7d6b8498c3b8b154a98474087576ca8b, type: 3}
   - {fileID: 2800000, guid: 1f7475ea52e617a4fb6f2a9665b923c4, type: 3}
   - {fileID: 2800000, guid: 7777092afe47dc94c8e27f5f5ec2214d, type: 3}
   - {fileID: 2800000, guid: 574c2e5667dd1e14e91d859a90b09377, type: 3}
+  - {fileID: 2800000, guid: fd0c72e3a475bc64190ec3cdf698a377, type: 3}
   - {fileID: 2800000, guid: b55cc51adbd374e48a6a27f4fe1ead37, type: 3}
-  - {fileID: 2800000, guid: 1ed4dad56fd964b4abc0bf37084a6908, type: 3}
   startPosX: -1550
   objectImage: {fileID: 6649790138767492329}
   minSpeed: 3
