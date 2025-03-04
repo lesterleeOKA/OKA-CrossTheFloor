@@ -30,15 +30,23 @@ public class LoaderConfig : GameSetting
 
     public void LoadGameData()
     {
-        /*RegisterCustomHandler("wordFormat", (value) =>
+        RegisterCustomHandler("maxObjectsEachRoad", (value) =>
         {
-            int wordFormat = int.Parse(value);
-            if (Enum.IsDefined(typeof(GridWordFormat), wordFormat))
-            {
-                this.gameSetup.gridWordFormat = (GridWordFormat)wordFormat;
-                LogController.Instance?.debug("GridWordFormat: " + this.gameSetup.gridWordFormat);
-            }
-        });*/
+            this.gameSetup.maximumObjectsEachRoad = int.Parse(value);
+            LogController.Instance?.debug("MaxObjectsEachRoad: " + this.gameSetup.maximumObjectsEachRoad);
+        });
+
+        RegisterCustomHandler("objectAverageSpeed", (value) =>
+        {
+            this.gameSetup.objectAverageSpeed = int.Parse(value);
+            LogController.Instance?.debug("ObjectAverageSpeed: " + this.gameSetup.objectAverageSpeed);
+        });
+
+        RegisterCustomHandler("maxRoad", (value) =>
+        {
+            this.gameSetup.maxRoadNumber = int.Parse(value);
+            LogController.Instance?.debug("maxRoad: " + this.gameSetup.maxRoadNumber);
+        });
 
         this.apiManager.PostGameSetting(this.GetParseURLParams,
                                         () => StartCoroutine(this.apiManager.postGameSetting(this.LoadQuestions)),

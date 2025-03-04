@@ -10,10 +10,9 @@ public class MovingObject : MonoBehaviour
     public Texture[] objectTextures;
     public float startPosX;
     public RawImage objectImage; // Reference to the RawImage UI element
-    public float minSpeed = 1f; // Minimum speed
-    public float maxSpeed = 5f; // Maximum speed
-    private RectTransform rectTransform = null;
+    public RectTransform rectTransform = null;
     private Tween currentTween = null;
+    public float speed = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,17 +58,13 @@ public class MovingObject : MonoBehaviour
             {
                 this.objectImage.texture = this.randomObjectTex;
             }
-            // Randomize speed
-            this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
-            this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;
-            float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
 
             // Determine the target position
             Vector2 targetPosition = Vector2.zero;
             this.rectTransform.anchoredPosition = new Vector2(this.startPosX, this.rectTransform.anchoredPosition.y);
             targetPosition = new Vector2(-(this.startPosX), this.rectTransform.anchoredPosition.y);
             // Use DOTween to move the car
-            this.currentTween = this.rectTransform.DOAnchorPos(targetPosition, speed).SetEase(Ease.Linear).OnComplete(()=> this.StartNewMovement());
+            this.currentTween = this.rectTransform.DOAnchorPos(targetPosition, this.speed).SetEase(Ease.Linear).OnComplete(()=> this.StartNewMovement());
         }
         else
         {

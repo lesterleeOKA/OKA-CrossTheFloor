@@ -10,7 +10,9 @@ public class SortRoad : MonoBehaviour
     public int maxMovingItems = 2; // Maximum number of moving items allowed
     private Image roadHintImage;
     private Canvas canvas;
-    private MovingObject[] movingItems;
+    public MovingObject[] movingItems;
+    public float minSpeed = 3f; // Minimum speed
+    public float maxSpeed = 6f; // Maximum speed
 
     public enum Direction { none, toLeft, toRight};
 
@@ -34,24 +36,33 @@ public class SortRoad : MonoBehaviour
         if(this.direction == Direction.none) return;
 
         // Initialize the moving items array
+        this.maxMovingItems = LoaderConfig.Instance.gameSetup.maximumObjectsEachRoad;
         this.movingItems = new MovingObject[this.maxMovingItems];
-        bool toLeft = this.direction== Direction.toLeft;
-        // Instantiate MovingObject prefabs up to the maximum limit
+        this.minSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) - 1f;
+        this.maxSpeed = (LoaderConfig.Instance.gameSetup.objectAverageSpeed * 2.5f) + 1f;   
+    }
+
+    public void InitRoad()
+    {
+        float speed = Random.Range(this.minSpeed, this.maxSpeed);
+        bool toLeft = this.direction == Direction.toLeft;
         for (int i = 0; i < this.maxMovingItems; i++)
         {
             GameObject movingItemObject = Instantiate(this.movingObjectPrefab, this.transform);
             this.movingItems[i] = movingItemObject.GetComponent<MovingObject>();
             if (this.movingItems[i] != null)
             {
+                this.movingItems[i].speed = speed;
                 this.movingItems[i].startPosX = toLeft ? 1550f : -1550f;
-                this.movingItems[i].transform.localScale = new Vector3(toLeft? -1f : 1f, 1f, 1f);
+                this.movingItems[i].transform.localScale = new Vector3(toLeft ? -1f : 1f, 1f, 1f);
                 this.movingItems[i].SortLayer = this.orderLayer + 1;
             }
         }
     }
 
+
     public void startMovingItems(int roadId)
-    {
+    {    
         StartCoroutine(this.delayNextItem(3f, roadId));
     }
 
@@ -59,8 +70,9 @@ public class SortRoad : MonoBehaviour
     {
         foreach (var movingItem in this.movingItems)
         {
-            if (movingItem != null)
+            if (movingItem != null && this.direction != Direction.none)
             {
+                LogController.Instance.debug("roadId" + roadId);
                 movingItem.StartNewMovement(roadId);
                 yield return new WaitForSeconds(delay);
             }

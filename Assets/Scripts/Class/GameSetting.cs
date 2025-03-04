@@ -274,7 +274,11 @@ public class GameSetup : LoadImage
     public float playersMovingSpeed = 3f;
     public int retry_times = 3;
     [Range(1, 3)]
+    public int maximumObjectsEachRoad;
+    [Range(1, 3)]
     public int objectAverageSpeed;
+    [Range(2, 3)]
+    public int maxRoadNumber;
     public bool showFPS = false;
     public int playerNumber = 1;
 
