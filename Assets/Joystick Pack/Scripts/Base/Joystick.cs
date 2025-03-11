@@ -140,8 +140,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         Vector2 localPoint = Vector2.zero;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(baseRect, screenPosition, cam, out localPoint))
         {
+            Debug.Log($"Local Point from Screen: {localPoint}");
+
             Vector2 pivotOffset = baseRect.pivot * baseRect.sizeDelta;
-            return localPoint - (background.anchorMax * baseRect.sizeDelta) + pivotOffset;
+            Vector2 anchoredPosition = localPoint - (background.anchorMax * baseRect.sizeDelta) + pivotOffset;
+            Debug.Log($"Calculated Anchored Position: {anchoredPosition}");
+            return anchoredPosition;
         }
         return Vector2.zero;
     }

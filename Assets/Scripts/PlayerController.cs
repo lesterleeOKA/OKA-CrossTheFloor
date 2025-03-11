@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : UserData
 {
-    public FixedJoystick joystick;
+    public FloatingJoystick joystick;
     public BloodController bloodController;
     public Scoring scoring;
     public string answer = string.Empty;
@@ -62,7 +62,8 @@ public class PlayerController : UserData
 
         if (this.joystick == null)
         {
-            this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
+            //this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
+            this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FloatingJoystick>();
         }
 
         if (this.bloodController == null)
@@ -317,7 +318,12 @@ public class PlayerController : UserData
             }
             this.speed = LoaderConfig.Instance.gameSetup.playersMovingSpeed;
             Vector3 newPosition = this.characterTransform.position + (Vector3)direction * this.speed * Time.deltaTime;
-            newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize * Camera.main.aspect);
+
+            var canvasScaler = this.transform.parent.GetComponent<CanvasScaler>();
+            float aspectRatio = (float)canvasScaler.referenceResolution.x / (float)canvasScaler.referenceResolution.y;
+            Debug.Log("Camera.main.aspect: " + aspectRatio);
+
+            newPosition.x = Mathf.Clamp(newPosition.x, -Camera.main.orthographicSize * aspectRatio, Camera.main.orthographicSize * aspectRatio);
             newPosition.y = Mathf.Clamp(newPosition.y, -Camera.main.orthographicSize * this.limitMovingYOffsetPercentage, Camera.main.orthographicSize * (this.limitMovingYOffsetPercentage - 0.075f));
 
             this.characterTransform.position = newPosition;
