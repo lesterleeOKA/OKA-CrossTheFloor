@@ -408,7 +408,7 @@ MonoBehaviour:
     allTextures: []
     useGCCollect: 1
     bgTexture: {fileID: 0}
-    previewTexture: {fileID: 2800000, guid: a6b97e79b26b47947891d333e6eaa3cd, type: 3}
+    previewTexture: {fileID: 2800000, guid: a16be003ea1d1b54bafb6cfc0ddd8ea8, type: 3}
     movingItemsTextures: []
     gridTexture: {fileID: 0}
     gameBackground: {fileID: 0}

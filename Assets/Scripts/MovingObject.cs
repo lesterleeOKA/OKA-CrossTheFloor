@@ -52,7 +52,7 @@ public class MovingObject : MonoBehaviour
         if(GameController.Instance.playing) { 
             if(this.objectImage != null && roadId > -1)
             {
-                this.objectImage.texture = this.objectTextures[roadId];
+                this.objectImage.texture = this.objectTextures.Length > roadId ? this.objectTextures[roadId] : this.objectTextures[0];
             }
             else
             {
@@ -89,8 +89,8 @@ public class MovingObject : MonoBehaviour
         {
             if (this.objectTextures != null && this.objectTextures.Length > 0)
             {
-                int randomId =UnityEngine.Random.Range(0, this.objectTextures.Length);
-                return this.objectTextures[randomId];
+                int objectTextureId = this.objectTextures.Length == 1 ? 0 : UnityEngine.Random.Range(0, this.objectTextures.Length);
+                return this.objectTextures[objectTextureId];
             }
             else return null;
         }   

@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1550, y: 25}
-  m_SizeDelta: {x: 387.7291, y: 180.3406}
+  m_SizeDelta: {x: 233, y: 232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8972061303976449301
 CanvasRenderer:
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7d6b8498c3b8b154a98474087576ca8b, type: 3}
+  m_Texture: {fileID: 2800000, guid: cb3a507c11500ad42a3b86cf44709ed8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -92,16 +92,11 @@ MonoBehaviour:
   sortLayer: 0
   canvas: {fileID: 3445799907165070192}
   objectTextures:
-  - {fileID: 2800000, guid: 7d6b8498c3b8b154a98474087576ca8b, type: 3}
-  - {fileID: 2800000, guid: 1f7475ea52e617a4fb6f2a9665b923c4, type: 3}
-  - {fileID: 2800000, guid: 7777092afe47dc94c8e27f5f5ec2214d, type: 3}
-  - {fileID: 2800000, guid: 574c2e5667dd1e14e91d859a90b09377, type: 3}
-  - {fileID: 2800000, guid: fd0c72e3a475bc64190ec3cdf698a377, type: 3}
-  - {fileID: 2800000, guid: b55cc51adbd374e48a6a27f4fe1ead37, type: 3}
+  - {fileID: 2800000, guid: cb3a507c11500ad42a3b86cf44709ed8, type: 3}
   startPosX: -1550
   objectImage: {fileID: 6649790138767492329}
-  minSpeed: 3
-  maxSpeed: 6
+  rectTransform: {fileID: 0}
+  speed: 5
 --- !u!61 &5121990031811044428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +129,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.37290192, y: -14.722351}
+  m_Offset: {x: -2.3639526, y: -4.322296}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -145,7 +140,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 306.07538, y: 62.52881}
+  m_Size: {x: 116.685425, y: 74.57086}
   m_EdgeRadius: 0
 --- !u!50 &1987532556053247301
 Rigidbody2D:
