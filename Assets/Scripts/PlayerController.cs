@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : UserData
 {
-    public FloatingJoystick joystick;
+    public VariableJoystick joystick;
     public BloodController bloodController;
     public Scoring scoring;
     public string answer = string.Empty;
@@ -62,8 +62,7 @@ public class PlayerController : UserData
 
         if (this.joystick == null)
         {
-            //this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FixedJoystick>();
-            this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<FloatingJoystick>();
+            this.joystick = GameObject.FindGameObjectWithTag("P" + this.RealUserId + "-controller").GetComponent<VariableJoystick>();
         }
 
         if (this.bloodController == null)
