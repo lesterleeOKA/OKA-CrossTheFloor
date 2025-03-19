@@ -33,7 +33,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] public RectTransform handle = null;
-    private RectTransform baseRect = null;
+    [HideInInspector]
+    public RectTransform baseRect = null;
 
     private Canvas canvas;
     private Camera cam;

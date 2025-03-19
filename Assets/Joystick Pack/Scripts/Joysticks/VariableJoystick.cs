@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class VariableJoystick : Joystick
@@ -55,8 +53,23 @@ public class VariableJoystick : Joystick
         {
             Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
             background.anchoredPosition += difference;
+            this.ClampToBaseRectBounds();
         }
         base.HandleInput(magnitude, normalised, radius, cam);
+    }
+
+    private void ClampToBaseRectBounds()
+    {
+        if (baseRect == null) return;
+
+        Vector2 minPosition = -baseRect.sizeDelta / 2;
+        Vector2 maxPosition = baseRect.sizeDelta / 2;
+
+        Vector2 clampedPosition = background.anchoredPosition;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minPosition.x, maxPosition.x);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minPosition.y, maxPosition.y);
+
+        background.anchoredPosition = clampedPosition;
     }
 }
 
